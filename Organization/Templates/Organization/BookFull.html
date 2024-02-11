@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><br>
+        <h2>Book Now</h2><br>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                
+                <td colspan="2" align="center"><img src="{{ post.post_image.url }}" alt="Image" width="200" height="200"></td>
+            </tr>
+            <tr>
+                <td>Content</td>
+                <td>{{post.post_content}}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="book_name" id="book_name"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="book_address" id="book_address"></td>
+
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="text" name="book_contact" id="book_contact"></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    
+                    <input type="submit" value="Book Now">
+                </td>
+            </tr>
+            
+
+
+        </table>
+    </form>
+</center>
+</body>
+</html>

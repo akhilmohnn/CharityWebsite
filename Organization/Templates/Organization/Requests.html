@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <h2>Request Items</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>Requesttype</td>
+                <td>
+                    <select name="req_request" id="req_request">
+                        <option value="">---select---</option>
+                        {% for i in rqst %}
+                        <option value="{{i.id}}">{{i.request_name}}</option>
+                        {% endfor %}
+    
+                    </select>
+                </td>
+            </tr>
+            <tr id="vis" style="visibility: hidden;">
+                <td>Price</td>
+                <td><input type="text" name="req_price" id="req_price"></td>
+            </tr>
+            <tr>
+                <td>Content</td>
+                <td><textarea name="req_content" id="req_content" cols="30" rows="10" ></textarea></td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td><input type="file" name="req_proof" id="req_proof"></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Post">
+                    <input type="res" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br>
+    <table border="1">
+        <tr>
+            <td>SI NO</td>
+            <td>Price</td>
+            <td>Content</td>
+            <td>Action</td>
+        </tr>
+        {% for i in rqst1 %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.req_price}}</td>
+            <td>{{i.req_content}}</td>
+            <td>
+                <a href="">Delete</a>
+            </td>
+
+            
+        </tr>
+        {% endfor %}
+
+    </table>
+</center>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#req_request").change(function () {
+        var did = $(this).val();
+        if(did==="3")
+        {
+            document.getElementById("vis").style.visibility="visible";
+        }
+        else{
+            document.getElementById("vis").style.visibility="hidden";
+        }
+    });
+    </script>
+    

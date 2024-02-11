@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h2>Search Organization</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <table border="1">
+            <tr>
+                <td>District</td>
+                <td>
+                    <select name="dropdown" id="sel_dis">
+                        <option value="">select</option>
+                        {% for i in district %}
+                        <option value="{{i.id}}">{{i.district_name}}</option>
+                        {% endfor %}
+    
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>
+                    <select name="sel_place" id="sel_place">
+                        <option value="">...Select...</option>
+    
+                    </select>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>Type</td>
+                <td>
+                    <select name="sel_type" id="sel_type">
+                        <option value="">select</option>
+                        {% for i in type %}
+                        <option value="{{i.id}}">{{i.type_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+    <br>
+</center>
+<!-- <table border="1" cellpadding="10">
+    <tr>
+        <td>SI No</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Contact</td>
+        <td>Address</td>
+        <td>Logo</td>
+        <td>Proof</td>
+        <td>Type</td>
+        <td>District</td>
+        <td>Place</td>
+    </tr>
+    <tr>
+        {% for i in odata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.org_name}}</td>
+            <td>{{i.org_email}}</td>
+            <td>{{i.org_contact}}</td>
+            <td>{{i.org_address}}</td>
+            <td>{{i.org_logo}}</td>
+            <td>{{i.org_proof}}</td>
+            <td>{{i.org_type.type_name}}</td>
+            <td>{{i.org_place.district_id.district_name}}</td>
+            <td>{{i.org_place.place_name}}</td>
+
+   
+        </tr>
+        {% endfor %}
+
+    </tr>
+</table> -->
+<table align="center" cellpadding="5" style="border-collapse: collapse" id="result">
+    <tr>
+        {% for i in odata %}
+
+        <td>
+            <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+
+                <p><img src="{{i.org_logo.url}}" width="100px" height="100px" /></p>
+                
+                <p>{{i.org_name}}</p>
+    
+                <p>{{i.org_contact}}</p>
+            
+                <p>{{i.org_email}}</p>
+                
+                <p>{{i.org_address}}</p>
+            </div>
+        </td>
+        {% if forloop.counter|divisibleby:4 %}
+    </tr>
+    <tr>
+        {% endif %}
+
+
+        {% endfor %}
+</table>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_dis").change(function () {
+        var did = $(this).val();
+        var tid=$("#sel_type").val();
+        var pid=$("#sel_place").val();
+        var ur = "{% url 'Guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+                var ur = "{% url 'MedicalShop:ajaxorg' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did,pid:pid,tid:tid },
+            success: function (data) {
+                $("#result").html(data);
+            },
+        });
+            },
+        });
+    });
+
+    $("#sel_place").change(function () {
+        var pid = $(this).val();
+        var did=$("#sel_dis").val();
+        var tid=$("#sel_type").val();
+        var ur = "{% url 'MedicalShop:ajaxorg' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did,pid:pid,tid:tid },
+            success: function (data) {
+                $("#result").html(data);
+            },
+        });
+    });
+
+
+
+    $("#sel_type").change(function () {
+        var tid = $(this).val();
+        var pid=$("#sel_place").val();
+        var did=$("#sel_dis").val();
+        var ur = "{% url 'MedicalShop:ajaxorg' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did,pid:pid,tid:tid },
+            success: function (data) {
+                $("#result").html(data);
+            },
+        });
+    });
+    </script>

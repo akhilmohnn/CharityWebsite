@@ -1,0 +1,26 @@
+<table align="center" cellpadding="5" style="border-collapse: collapse" id="result">
+    <tr>
+        {% for i in data %}
+
+        <td>
+            <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+
+                <p><img src="{{i.org_logo.url}}" width="100px" height="100px" /></p>
+                
+                <p>{{i.org_name}}</p>
+    
+                <p>{{i.org_contact}}</p>
+            
+                <p>{{i.org_email}}</p>
+                
+                <p>{{i.org_address}}</p>
+            </div>
+        </td>
+        {% if forloop.counter|divisibleby:4 %}
+    </tr>
+    <tr>
+        {% endif %}
+
+
+        {% endfor %}
+</table>

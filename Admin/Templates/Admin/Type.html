@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h3>Type Lists</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Type</td>
+                <td><input type="text" name="type" value="{{typ_data.type_name}}"></td>
+            </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Add" ></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <table border="1">
+            <tr>
+                <td>SI No</td>
+                <td>Types</td>
+                <td>Action</td>
+            </tr>
+            {% for i in typ %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.type_name}}</td>
+                <td>
+                    <a href="{% url 'webbasic:deletetype' i.id %}">Delete</a>
+                    <a href="{% url 'webbasic:edittype' i.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

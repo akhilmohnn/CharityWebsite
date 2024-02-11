@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h2>Helper's posts</h2><br>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="1" cellpadding="10">
+        <tr>
+            <td>SI No</td>
+            <td>Type</td>
+            <td>Image</td>
+            <td>Content</td>
+        </tr>
+        <tr>
+            {% for i in rqst1 %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.post_request.request_name}}</td>
+                <td><img src="{{ i.post_image.url }}" alt="Image" width="200" height="200"></td> 
+                <td>{{i.post_content}}</td>              
+                 <td>
+                    <a href="{% url 'Organization:bookfull' i.id %}">Book</a>
+                    
+                </td>
+            
+    
+                
+            </tr>
+            {% endfor %}
+        </tr>
+    </table>
+</form>
+</center>
+</body>
+</html>

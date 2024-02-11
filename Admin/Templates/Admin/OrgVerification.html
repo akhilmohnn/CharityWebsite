@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h3>Organization verification</h3>
+   
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>SI No</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Contact</td>
+                <td>Address</td>
+                <td>Logo</td>
+                <td>Proof</td>
+                <td>Type</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Action</td>
+            </tr>
+            <tr>
+                {% for i in odata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.org_name}}</td>
+                    <td>{{i.org_email}}</td>
+                    <td>{{i.org_contact}}</td>
+                    <td>{{i.org_address}}</td>
+                    <td>{{i.org_logo}}</td>
+                    <td>{{i.org_proof}}</td>
+                    <td>{{i.org_type.type_name}}</td>
+                    <td>{{i.org_place.district_id.district_name}}</td>
+                    <td>{{i.org_place.place_name}}</td>
+                    <td>
+                        <a href="{% url 'webbasic:acceptorg' i.id %}">Accept</a>
+                        <a href="{% url 'webbasic:rejectorg' i.id %}">Reject</a>
+                    </td>
+                
+        
+                    
+                </tr>
+                {% endfor %}
+
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>

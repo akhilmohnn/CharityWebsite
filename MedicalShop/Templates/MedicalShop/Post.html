@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <h2>Post product</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="post_image" id="post_image"></td>
+            </tr>
+            <tr>
+                <td>Content</td>
+                <td><textarea name="post_content" id="post_content" cols="30" rows="10" ></textarea></td>
+            </tr>
+            <tr>
+                <td>Requesttype</td>
+                <td>
+                    <select name="post_request" id="post_request">
+                        <option value="select"></option>
+                        {% for i in rqst %}
+                        <option value="{{i.id}}">{{i.request_name}}</option>
+                        {% endfor %}
+    
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Post">
+                    <input type="res" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br>
+    <table border="1">
+        <tr>
+            <td>SI NO</td>
+            <td>Image</td>
+            <td>Content</td>
+            <td>Action</td>
+        </tr>
+        {% for i in post %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{ i.post_image.url }}" alt="" width="300"></td>
+            <td>{{i.post_content}}</td>
+            <td>
+                <a href="">Delete</a>
+            </td>
+
+            
+        </tr>
+        {% endfor %}
+
+    </table>
+</center>
+</body>
+</html>

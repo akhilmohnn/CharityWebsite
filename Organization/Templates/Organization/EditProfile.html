@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="goBack()">Home Page</button>
+
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <table align="center" cellpadding="10" border="1">
+            <tr>
+                <td>name</td>
+                <td><input type="text" id="" name="txt_name" value="{{odata.org_name}}"></td>
+            </tr>
+            <tr>
+                <td>contact</td>
+                <td><input type="text" id="" name="txt_con" value="{{odata.org_contact}}"></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><input type="email" id="" name="txt_email" value="{{odata.org_email}}"></td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td><textarea name="txt_address" id="" cols="30" rows="10" >{{odata.org_address}}</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="btn_submit" id="" value="update">
+                <input type="reset" name="btn_cancel" id="" value="cancel"></td>
+                
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</html>

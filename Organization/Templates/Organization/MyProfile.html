@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form>
+        {% csrf_token %}
+     
+        <table border="1" align="center" cellpadding="12">
+            <tr>
+                
+                <td align="center" colspan="2"><img src="{{odata.org_logo.url}}" width="150" height="150"></td>
+            </tr>
+         
+            <tr>
+                <th>name</th>
+                <td>{{odata.org_name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{odata.org_email}}</td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{odata.org_contact}}</td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>{{odata.org_place.place_name}}</td>
+            </tr>
+            
+            <tr>
+                <td>password</td>
+                <td>{{odata.org_password}}</td>
+            </tr>
+          
+            </tr>
+        </table>
+
+
+    </form>
+</body>
+</html>

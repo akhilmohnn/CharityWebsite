@@ -1,0 +1,171 @@
+from django.shortcuts import render,redirect
+from .models import *
+from Admin.models import *
+from Guest.models import *
+from Organization.models import *
+
+# Create your views here.
+
+def homepage(request):
+    hdata=tbl_helper.objects.get(id=request.session['hid'])
+    return render(request,"Helpers/Homepage.html",{'hdata':hdata})
+
+def myprofile(request):
+    hdata=tbl_helper.objects.get(id=request.session['hid'])
+    return render(request,"Helpers/MyProfile.html",{'hdata':hdata})
+
+def changep(request):
+    hdata=tbl_helper.objects.get(id=request.session['hid'])
+    if request.method=="POST":
+        pwd=hdata.helper_password
+        current_pwd=request.POST.get("txt_pass")
+        if pwd == current_pwd:
+            pass1 = request.POST.get("txt_new")
+            pass2 = request.POST.get("txt_cpass")
+            if pass1==pass2 :
+                hdata.helper_password=pass1
+                hdata.save()
+                return redirect("Helpers:ChangePassword")
+            else:
+                msg="password  does not match"
+                return render(request,"Helpers/ChangePassword.html",{'msg':msg})
+        else:
+            msg="incorrect password"
+            return render(request,"Helpers/ChangePassword.html",{'msg':msg})
+    else:
+        return render(request,"Helpers/ChangePassword.html")
+    
+
+def editprofile(request):
+    hdata=tbl_helper.objects.get(id=request.session['hid'])
+    if request.method=="POST":
+        hdata.helper_name=request.POST.get("txt_name")
+        hdata.helper_contact=request.POST.get("txt_con")
+        hdata.helper_email=request.POST.get("txt_email")
+        hdata.helper_address=request.POST.get("txt_address")
+        hdata.save()
+        return redirect("Helpers:MyProfile")
+    else:
+        return render(request,"Helpers/EditProfile.html",{'hdata':hdata})    
+    
+def postproduct(request):
+    request_data=tbl_request.objects.all()
+    post=tbl_post.objects.all()
+    if request.method=="POST":
+        image=request.FILES.get("post_image")
+        content=request.POST.get("post_content")
+
+        rqst=tbl_request.objects.get(id=request.POST.get('post_request'))
+
+        tbl_post.objects.create(post_image=image,post_content=content,post_request=rqst)
+
+        return render(request,'Helpers/Post.html',{'rqst':request_data,'post': post,'post': post})
+    else:
+        return render(request,'Helpers/Post.html',{'rqst':request_data,'post': post,'post': post})
+    
+def deleteproduct(request,did):
+    tbl_post.objects.get(id=did).delete()
+    return redirect("Helpers:PostProduct") 
+
+
+def viewrequest(request):
+    rqst1=tbl_helprequest.objects.filter(status=1)
+    return render(request,"Helpers/ViewRequest.html",{'rqst1':rqst1}) 
+
+def requestfull(request,aid):
+    rdata=tbl_helprequest.objects.get(id=aid)
+    return render(request,"Helpers/RequestFull.html",{'rdata':rdata}) 
+
+# def rqstfull(request,aid):
+#     rdata=tbl_helprequest.objects.get(id=aid)
+#     return render(request,"Helpers/MyProfile.html",{'hdata':rdata})
+
+def search(request):
+    district_data=tbl_district.objects.all()
+    type_data=tbl_type.objects.all()
+    odata=tbl_organization.objects.filter(status=1)
+
+    if request.method=="POST":
+        place=tbl_place.objects.get(id=request.POST.get('sel_place'))
+        
+        return render(request,'MedicalShop/Search.html',{'district':district_data,'type':type_data,'odata':odata})
+    else:
+           return render(request,'MedicalShop/Search.html',{'district':district_data,'type':type_data,'odata':odata})
+
+def ajaxorg(request):
+    if request.GET.get("tid")!="":
+        typedata=tbl_type.objects.get(id=request.GET.get("tid"))
+        if request.GET.get("pid")!="":
+            placedata=tbl_place.objects.get(id=request.GET.get("pid"))
+            data=tbl_organization.objects.filter(org_type=typedata,org_place=placedata,status=1)
+            return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+        elif request.GET.get("did")!="":
+            districtdata=tbl_district.objects.get(id=request.GET.get("did"))
+            data=tbl_organization.objects.filter(org_type=typedata,org_place__district_id=districtdata,status=1)
+            return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+        else:
+            data=tbl_organization.objects.filter(org_type=typedata,status=1)
+            return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+    else:
+        if request.GET.get("pid")!="":
+            placedata=tbl_place.objects.get(id=request.GET.get("pid"))
+            data=tbl_organization.objects.filter(org_place=placedata,status=1)
+            return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+        else:
+            districtdata=tbl_district.objects.get(id=request.GET.get("did"))
+            data=tbl_organization.objects.filter(org_place__district_id=districtdata,status=1)
+            return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+        
+
+def booking(request):
+    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
+    odata=tbl_book.objects.filter(post__helper=helpdata,status=0)
+    
+    return render(request,"Helpers/Bookings.html",{'odata':odata})        
+
+def acceptedbooking(request):
+    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
+    odata=tbl_book.objects.filter(post__helper=helpdata,status=1)
+    
+    return render(request,"Helpers/AcceptedBookings.html",{'odata':odata})   
+
+
+def rejectedbooking(request):
+    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
+    odata=tbl_book.objects.filter(post__helper=helpdata,status=2)
+    
+    return render(request,"Helpers/RejectedBookings.html",{'odata':odata})   
+
+def acceptbooking(request,aid):
+    data=tbl_book.objects.get(id=aid)
+    data.status=1
+    data.save()
+    return redirect("Helpers:booking")
+
+def rejectbooking(request,rid):
+    data=tbl_book.objects.get(id=rid)
+    data.status=2
+    data.save()
+    return redirect("Helpers:booking")
+
+   
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
