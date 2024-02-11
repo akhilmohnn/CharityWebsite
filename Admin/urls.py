@@ -27,7 +27,12 @@ urlpatterns = [
         path('acceptedrequest/',views.acceptedrequest,name="AcceptedRequest"),
         path('rejectedrequest/',views.rejectedrequest,name="RejectedRequest"),
         path('acceptrequest/<int:aid>',views.acceptrequest,name="acceptrequest"),
-        path('rejectrequest/<int:rid>',views.rejectrequest,name="rejectreq")
+        path('rejectrequest/<int:rid>',views.rejectrequest,name="rejectreq"),
+        path('viewadverisement/',views.viewadverisement,name="viewadverisement"),
+        path('acceptedads/',views.acceptedads,name="acceptedads"),
+        path('rejectedads/',views.rejectedads,name="rejectedads"),
+        path('acceptads/<int:aid>',views.acceptads,name="acceptads"),
+        path('rejectads/<int:rid>',views.rejectads,name="rejectads"),
 
 
 

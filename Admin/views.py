@@ -142,6 +142,37 @@ def rejectrequest(request,rid):
     rqst.save()
     return redirect("webbasic:viewrequest")
 
+def viewadverisement(request):
+    addata=tbl_advertisement.objects.filter(status=0)
+    return render(request,"Admin/ViewAdvertisement.html",{'addata':addata})
+
+def acceptedads(request):
+    addata=tbl_advertisement.objects.filter(status=1)
+    return render(request,"Admin/Acceptedads.html",{'addata':addata})
+
+def rejectedads(request):
+    addata=tbl_advertisement.objects.filter(status=2)
+    return render(request,"Admin/Rejectedads.html",{'addata':addata})
+
+def acceptads(request,aid):
+    addata1=tbl_advertisement.objects.get(id=aid)
+    addata1.status=1
+    addata1.save()
+    return redirect("webbasic:viewadverisement")
+
+def rejectads(request,rid):
+    addata1=tbl_advertisement.objects.get(id=rid)
+    addata1.status=2
+    addata1.save()
+    return redirect("webbasic:viewadverisement")
+
+
+
+
+    
+
+
+
 
 
 

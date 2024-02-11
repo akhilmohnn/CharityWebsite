@@ -46,18 +46,20 @@ def editprofile(request):
         hdata.save()
         return redirect("Helpers:MyProfile")
     else:
-        return render(request,"Helpers/EditProfile.html",{'hdata':hdata})    
+        return render(request,"Helpers/EditProfile.html",{'hdata':hdata})   
+ 
     
 def postproduct(request):
     request_data=tbl_request.objects.all()
     post=tbl_post.objects.all()
+    hdata=tbl_helper.objects.get(id=request.session['hid'])
     if request.method=="POST":
         image=request.FILES.get("post_image")
         content=request.POST.get("post_content")
 
         rqst=tbl_request.objects.get(id=request.POST.get('post_request'))
 
-        tbl_post.objects.create(post_image=image,post_content=content,post_request=rqst)
+        tbl_post.objects.create(post_image=image,post_content=content,post_request=rqst,helpers=hdata)
 
         return render(request,'Helpers/Post.html',{'rqst':request_data,'post': post,'post': post})
     else:
@@ -118,21 +120,21 @@ def ajaxorg(request):
         
 
 def booking(request):
-    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
-    odata=tbl_book.objects.filter(post__helper=helpdata,status=0)
+    helpdata=tbl_helper.objects.get(id=request.session["hid"])
+    odata=tbl_book.objects.filter(post_id__helpers=helpdata,status=0)
     
     return render(request,"Helpers/Bookings.html",{'odata':odata})        
 
 def acceptedbooking(request):
-    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
-    odata=tbl_book.objects.filter(post__helper=helpdata,status=1)
+    helpdata=tbl_helper.objects.get(id=request.session["hid"])
+    odata=tbl_book.objects.filter(post_id__helpers=helpdata,status=1)
     
     return render(request,"Helpers/AcceptedBookings.html",{'odata':odata})   
 
 
 def rejectedbooking(request):
-    helpdata=tbl_helper.objects.get(id=request.GET.get("hid"))
-    odata=tbl_book.objects.filter(post__helper=helpdata,status=2)
+    helpdata=tbl_helper.objects.get(id=request.session["hid"])
+    odata=tbl_book.objects.filter(post_id__helpers=helpdata,status=2)
     
     return render(request,"Helpers/RejectedBookings.html",{'odata':odata})   
 
@@ -147,6 +149,22 @@ def rejectbooking(request,rid):
     data.status=2
     data.save()
     return redirect("Helpers:booking")
+
+def advertisement(request):
+    ad=tbl_advertisement.objects.all()
+    hdata=tbl_helper.objects.get(id=request.session['hid'])  
+    if request.method=="POST":
+        title=request.POST.get("ad_title")
+        image=request.FILES.get("ad_image")
+        content=request.POST.get("ad_content")
+        contact=request.POST.get("ad_contact")
+
+        tbl_advertisement.objects.create(ad_title=title,ad_image=image,ad_content=content,ad_contact=contact,helpers=hdata)
+
+        return render(request,'Helpers/Advertisement.html',{'ad':ad}) 
+    else:
+        return render(request,'Helpers/Advertisement.html',{'ad':ad})
+
 
    
 
