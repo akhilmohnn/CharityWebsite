@@ -1,3 +1,6 @@
+{% extends 'Guest/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,52 +11,49 @@
 <body>
     <center>
         <h3>Medical Shop Registration</h3>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" id="registration-form">
     {% csrf_token %}
     <table border="1">
         <tr>
             <td>Name</td>
             <td><input type="text" name="medical_name" id="medical_name"></td>
         </tr>
-        
-            <tr>
-                <td>Email</td>
-                <td><input type="text" name="medical_email" id="medical_email"></td>
-            </tr>
-            <tr>
-                <td>Contact</td>
-                <td><input type="text" name="medical_contact" id="medical_contact"></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td><input type="text" name="medical_address" id="medical_address"></td>
-            </tr>
-            <tr>
-                <td>Photo</td>
-                <td><input type="file" name="medical_photo" id="medical_photo"></td>
-            </tr>
-            <tr>
-                <td>Proof</td>
-                <td><input type="file" name="medical_proof" id="medical_proof"></td>
-            </tr>
-           <tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="medical_email" id="medical_email"></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="tel" name="medical_contact" id="medical_contact"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" name="medical_address" id="medical_address"></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="medical_photo" id="medical_photo"></td>
+        </tr>
+        <tr>
+            <td>Proof</td>
+            <td><input type="file" name="medical_proof" id="medical_proof"></td>
+        </tr>
+        <tr>
             <td>District</td>
-                <td>
-                    <select name="dropdown" id="sel_dis">
-                        <option value="select"></option>
-                        {% for i in district %}
-                        <option value="{{i.id}}">{{i.district_name}}</option>
-                        {% endfor %}
-    
-                    </select>
-                </td>
-           </tr>
+            <td>
+                <select name="dropdown" id="sel_dis">
+                    <option value="select"></option>
+                    {% for i in district %}
+                    <option value="{{i.id}}">{{i.district_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
         <tr>
             <td>Place</td>
             <td>
                 <select name="sel_place" id="sel_place">
                     <option value="">...Select...</option>
-
                 </select>
             </td>
         </tr>
@@ -62,10 +62,14 @@
             <td><input type="password" name="medical_password" id="medical_password"></td>
         </tr>
         <tr>
-            <td colspan="2" align="center">
-            <input type="submit" value="Register"></td>
+            <td>Confirm Password</td>
+            <td><input type="password" name="medical_confirm_password" id="medical_confirm_password"></td>
         </tr>
-
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Register">
+            </td>
+        </tr>
     </table>
     </form>
 </center>
@@ -84,4 +88,38 @@
             },
         });
     });
-    </script>
+
+    // Validation Script
+    $('#registration-form').submit(function (e) {
+        var password = $('#medical_password').val();
+        var confirmPassword = $('#medical_confirm_password').val();
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            e.preventDefault();
+        }
+
+        var email = $('#medical_email').val();
+        var contact = $('#medical_contact').val();
+        var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // Password pattern: At least one uppercase, one lowercase, one number, and minimum eight characters
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email pattern
+        var contactPattern = /^\d{10}$/; // Mobile number pattern (10 digits only)
+        
+        if (!emailPattern.test(email)) {
+            alert("Invalid email format.");
+            e.preventDefault();
+        }
+
+        if (!contactPattern.test(contact)) {
+            alert("Invalid contact number format. Please enter 10 digits.");
+            e.preventDefault();
+        }
+
+        if (!passwordPattern.test(password)) {
+            alert("Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long.");
+            e.preventDefault();
+        }
+
+        
+    });
+</script>
+{% endblock content %}

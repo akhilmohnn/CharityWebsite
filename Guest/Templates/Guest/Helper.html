@@ -8,48 +8,45 @@
 <body>
     <center>
         <h3>Helper Registration</h3>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" id="helper-registration-form">
     {% csrf_token %}
     <table border="1">
         <tr>
             <td>Name</td>
             <td><input type="text" name="helper_name" id="helper_name"></td>
         </tr>
-        
-            <tr>
-                <td>Email</td>
-                <td><input type="text" name="helper_email" id="helper_email"></td>
-            </tr>
-            <tr>
-                <td>Contact</td>
-                <td><input type="text" name="helper_contact" id="helper_contact"></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td><input type="text" name="helper_address" id="helper_address"></td>
-            </tr>
-            <tr>
-                <td>Photo</td>
-                <td><input type="file" name="helper_photo" id="helper_photo"></td>
-            </tr>
-           <tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="helper_email" id="helper_email"></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="tel" name="helper_contact" id="helper_contact"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" name="helper_address" id="helper_address"></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="helper_photo" id="helper_photo"></td>
+        </tr>
+        <tr>
             <td>District</td>
-                <td>
-                    <select name="dropdown" id="sel_dis">
-                        <option value="select"></option>
-                        {% for i in district %}
-                        <option value="{{i.id}}">{{i.district_name}}</option>
-                        {% endfor %}
-    
-                    </select>
-                </td>
-           </tr>
+            <td>
+                <select name="dropdown" id="sel_dis">
+                    <option value="select"></option>
+                    {% for i in district %}
+                    <option value="{{i.id}}">{{i.district_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
         <tr>
             <td>Place</td>
             <td>
                 <select name="sel_place" id="sel_place">
                     <option value="">...Select...</option>
-
                 </select>
             </td>
         </tr>
@@ -61,7 +58,6 @@
                     {% for i in type %}
                     <option value="{{i.id}}">{{i.type_name}}</option>
                     {% endfor %}
-
                 </select>
             </td>
         </tr>
@@ -70,15 +66,20 @@
             <td><input type="password" name="helper_password" id="helper_password"></td>
         </tr>
         <tr>
-            <td colspan="2" align="center">
-            <input type="submit" value="Register"></td>
+            <td>Confirm Password</td>
+            <td><input type="password" name="helper_confirm_password" id="helper_confirm_password"></td>
         </tr>
-
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Register">
+            </td>
+        </tr>
     </table>
     </form>
 </center>
 </body>
 </html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $("#sel_dis").change(function () {
@@ -92,4 +93,37 @@
             },
         });
     });
-    </script>
+
+    // Validation Script
+    $('#helper-registration-form').submit(function (e) {
+        var password = $('#helper_password').val();
+        var confirmPassword = $('#helper_confirm_password').val();
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            e.preventDefault();
+        }
+
+        var email = $('#helper_email').val();
+        var contact = $('#helper_contact').val();
+        var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // Password pattern: At least one uppercase, one lowercase, one number, and minimum eight characters
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email pattern
+        var contactPattern = /^\d{10}$/; // Mobile number pattern (10 digits only)
+        
+        if (!emailPattern.test(email)) {
+            alert("Invalid email format.");
+            e.preventDefault();
+        }
+
+        if (!contactPattern.test(contact)) {
+            alert("Invalid contact number format. Please enter 10 digits.");
+            e.preventDefault();
+        }
+
+        if (!passwordPattern.test(password)) {
+            alert("Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long.");
+            e.preventDefault();
+        }
+
+        
+    });
+</script>
