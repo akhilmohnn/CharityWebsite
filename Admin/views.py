@@ -166,6 +166,14 @@ def rejectads(request,rid):
     addata1.save()
     return redirect("webbasic:viewadverisement")
 
+def scholarshiptype(request):
+    disdata=tbl_scholarshiptype.objects.all()
+    if request.method=="POST":
+        tbl_scholarshiptype.objects.create(scholarship_type=request.POST.get("txt_scholar"))
+        return render(request,"Admin/Scholarshiptype.html",{'scholarshiptype':disdata})
+    else:
+        return render(request,"Admin/Scholarshiptype.html",{'scholarshiptype':disdata})
+
 
 
 

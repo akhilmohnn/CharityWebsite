@@ -164,7 +164,20 @@ def advertisement(request):
         return render(request,'Helpers/Advertisement.html',{'ad':ad}) 
     else:
         return render(request,'Helpers/Advertisement.html',{'ad':ad})
+    
 
+def scholar(request):
+    disdata=tbl_scholarshipname.objects.all()
+    misdata=tbl_scholarshiptype.objects.all()
+    if request.method=="POST":
+        mat = tbl_scholarshiptype.objects.get(id=request.POST.get("select_sch"))
+        tbl_scholarshipname.objects.create(scholarship_name=request.POST.get("txt_name1"),scholarship_details=request.POST.get("txt_name2"),
+        
+        scholarship_type=mat)
+        return render(request,"Helpers/Scholarship.html",{'disdata':disdata,'misdata':misdata})
+    else:
+
+        return render(request,"Helpers/Scholarship.html",{'disdata':disdata,'misdata':misdata})
 
    
 

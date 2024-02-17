@@ -21,6 +21,7 @@ urlpatterns = [
      path('acceptbooking/<int:aid>',views.acceptbooking,name="acceptbooking"),
      path('rejectbooking/<int:rid>',views.rejectbooking,name="rejectbooking"),
      path('advertisement/',views.advertisement,name="advertisement"),
+     path('scholarship/',views.scholar,name="Scholarship"),
      
      
 ]

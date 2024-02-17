@@ -19,4 +19,12 @@ class tbl_book(models.Model):
     post_id=models.ForeignKey(tbl_post,on_delete=models.CASCADE) 
     organization_id=models.ForeignKey(tbl_organization,on_delete=models.CASCADE)
     status=models.IntegerField(default=0)
+
+class tbl_scholarshipapply(models.Model):
+    status=models.IntegerField(default=0)
+    document=models.FileField(upload_to="MemberDocs/")
+    scholarship_name=models.ForeignKey(tbl_scholarshipname,on_delete=models.CASCADE)
+    date=models.DateField(auto_now_add=True)
+    org_name=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)
+      
     

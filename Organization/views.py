@@ -87,6 +87,34 @@ def mybook(request):
     odata=tbl_book.objects.all()
     return render(request,"Organization/MyBooking.html",{'odata':odata})
 
+def vscholarship(request):
+    disdata=tbl_scholarshiptype.objects.all()
+    subcat=tbl_scholarshipname.objects.all()
+    if request.method=="POST":
+        return render(request,"Organization/ViewScholarship.html",{'disdata':disdata,'subcat':subcat})
+    else:
+        return render(request,"Organization/ViewScholarship.html",{'disdata':disdata,'subcat':subcat})
+    
+def ajaxscholar(request):
+    scholardata=tbl_scholarshiptype.objects.get(id=request.GET.get('sch'))
+    scholarnamedata=tbl_scholarshipname.objects.filter(scholarship_type=scholardata)
+    return render(request,"Organization/ajaxscholar.html",{'subcat':scholarnamedata})    
+
+def schapply(request,schid):
+
+    schdata=tbl_scholarshipname.objects.get(id=schid)
+    if 'oid' in request.session:
+        data=tbl_organization.objects.get(id=request.session["oid"])
+        if request.method=="POST" and request.FILES:
+            tbl_scholarshipapply.objects.create(org_name=data,scholarship_name=schdata,
+         
+            document=request.FILES.get('filedoc'))
+            return render(request,"Organization/ScholarshipApply.html",{'data':data,'schdata':schdata})
+        else:
+           # return render(request,"Member/scholarshipapply.html")
+            return render(request,"Organization/ScholarshipApply.html",{'data':data,'schdata':schdata})
+
+
     
     
   

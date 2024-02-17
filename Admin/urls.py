@@ -33,6 +33,7 @@ urlpatterns = [
         path('rejectedads/',views.rejectedads,name="rejectedads"),
         path('acceptads/<int:aid>',views.acceptads,name="acceptads"),
         path('rejectads/<int:rid>',views.rejectads,name="rejectads"),
+        path('Scholarshiptype/',views.scholarshiptype,name="scholarshiptype"),
 
 
 

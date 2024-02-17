@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h2>Apply the scholarship</h2></center>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+        <table border="3" cellpadding="10" align="center">
+            {% if schdata %}
+            
+            <tr>
+                <td>name</td>
+                <td>{{ schdata.scholarship_name}}</td>
+            </tr>
+            <tr>
+                <td>details</td>
+                <td>{{ schdata.scholarship_details}}</td>
+            </tr>
+            
+            {% endif %}
+            <tr>
+            
+                
+                <td>document</td>
+                <td><input type="file" id="" name="filedoc" required="" autocomplete="off"></td>
+            </tr>
+          
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="btn_submit" id="" value="save">
+                <input type="reset" name="btn_cancel" id="" value="cancel"></td>
+               
+            </tr>
+        </table>
+       
+</body>
+</html>

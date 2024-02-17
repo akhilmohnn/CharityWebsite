@@ -25,6 +25,8 @@ class tbl_request(models.Model):
 #     type=models.CharField(max_length=50)
 #     status=models.CharField(max_length=50,default=0,null=True)
 
+class tbl_scholarshiptype(models.Model):
+    scholarship_type=models.CharField(max_length=50)
 
 
 

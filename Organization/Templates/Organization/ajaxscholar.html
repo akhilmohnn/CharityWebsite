@@ -1,0 +1,19 @@
+<table align="center"  style="margin-bottom: 200px;" id="scholar">
+    <tr>
+        {% for i in subcat %}
+        <td>
+            <div style="border:1px solid black;margin:20px;padding:10px">
+              <p>scholarship Name : {{i.scholarship_name}}</p>
+               <p>scholarship Details : {{i.scholarship_details}}</p>
+               <center><a href="{% url 'Organization:ScholarshipApply' %}">Apply</a><br></center>
+               
+                   </div>
+</td>
+{% if forloop.counter|divisibleby:4 %}
+</tr>
+<tr>
+
+    {% endif %}
+    {% endfor %}
+    </table>
+</form>

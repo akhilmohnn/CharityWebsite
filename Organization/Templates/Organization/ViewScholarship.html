@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Scholarships</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table td, table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        .scholarship-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #f9f9f9;
+        }
+        .scholarship-card a {
+            display: block;
+            text-align: center;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .scholarship-card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>View Scholarships</h2>
+        <form method="post" action="" id="scholarform" data-scholar-url="{% url 'Organization:ajaxshcolar'%}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Scholarship Type</td>
+                    <td>
+                        <select name="select_scheme" id="sel_sch">
+                            <option>-- Select --</option>
+                            {% for i in disdata %}
+                            <option value="{{ i.id }}">{{ i.scholarship_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="scholar"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $("#sel_sch").change(function () {
+            var did = $(this).val();
+            var ur = $("#scholarform").attr("data-scholar-url");
+            $.ajax({
+                url: ur,
+                data: { sch: did, },
+                success: function (data) {
+                    $("#scholar").html(data);
+                },
+            });
+        });
+    </script>
+</body>
+</html>

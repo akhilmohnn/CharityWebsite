@@ -17,3 +17,9 @@ class tbl_advertisement(models.Model):
     ad_contact=models.CharField(max_length=50)
     helpers=models.ForeignKey(tbl_helper,on_delete=models.CASCADE)
     status=models.CharField(max_length=50,default=0,null=True)
+
+class tbl_scholarshipname(models.Model):
+    scholarship_name=models.CharField(max_length=50)
+    scholarship_details=models.CharField(max_length=50)
+    scholarship_type=models.ForeignKey(tbl_scholarshiptype,on_delete=models.CASCADE)    
+

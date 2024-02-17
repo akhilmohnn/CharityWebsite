@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="txt_name1" id="" value="" required="" autocomplete="off"> </td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td><input type="text" name="txt_name2" id="" value="" required="" autocomplete="off"> </td>
+            </tr>
+           <tr>
+            <td>ScholarshipType </td>
+            <td><select name="select_sch" id="" required="" autocomplete="off">
+                <option> --select--</option>
+                {% for i in misdata %}
+                <option value="{{ i.id }}">{{ i.scholarship_type }}</option>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="btn_save " id="" value="submit">
+                <input type="reset" name="btn_cancel" id="" value="cancel">
+            </td>
+        </tr>
+        </table>
+        <br><br><br><br>
+    <table border="1" align="center" cellpadding="3">
+        <tr>
+            <td>SI.no</td>
+            <td>name</td>
+            <td>details</td>
+            <td>scholarship_type</td>
+            <td>Action</td>
+
+        </tr>
+        {% for i in disdata %}
+        <tr>
+            
+            <td>{{forloop.counter}}</td>
+            <td>{{i.scholarship_name}}</td>
+            <td>{{i.scholarship_details}}</td>
+            <td>{{i.scholarship_type.scholarship_type}}</td>
+            
+            <td><a href="">Delete</a>
+               </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+</body>
+</html>

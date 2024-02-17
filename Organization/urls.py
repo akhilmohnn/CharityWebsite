@@ -11,6 +11,9 @@ urlpatterns = [
      path('viewposts/',views.viewposts,name="viewposts"),
      path('bookfull/<int:bid>',views.bookfull,name="bookfull"),
      path('mybook/',views.mybook,name="mybook"),
+     path('viewscholarship/',views.vscholarship,name="viewscholarship"),
+     path('ajaxscholar/',views.ajaxscholar,name="ajaxshcolar"),
+     path('ScholarshipApply/<int:schid>',views.schapply,name="ScholarshipApply"),
 
 
      

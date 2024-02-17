@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="4" align="center">
+            <tr>
+                <td>ScholarshipType</td>
+                <td><input type="text" name="txt_scholar" id="" value="{{edis.scholarship_type}}" required="" autocomplete="off"> </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="btn_save " id="" value="submit">
+                    <input type="reset" name="btn_cancel" id="" value="cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br><br><br>
+    <table border="1" align="center" cellpadding="3">
+        <tr>
+            <td>sl.no</td>
+            <td>Scholarship Type</td>
+            <td>Action</td>
+        </tr>
+        {% for i in scholarshiptype %}
+        <tr>
+            
+            <td>{{forloop.counter}}</td>
+            <td>{{i.scholarship_type}}</td>
+            <td><a href="">Delete</a>
+                <a href="">edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

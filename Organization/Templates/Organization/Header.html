@@ -95,9 +95,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a class="nav-link click-scroll" href="#top">Home</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{% url 'Helpers:search' %}">Search Organizations</a>
-                        </li>
+                        
 
                         <!-- <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_3">Causes</a>
@@ -111,33 +109,23 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'Helpers:MyProfile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Organization:MyProfile' %}">My Profile</a></li>
 
-                                <li><a class="dropdown-item" href="{% url 'Helpers:EditProfile' %}">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Helpers:ChangePassword' %}">Change Password</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Organization:EditProfile' %}">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Organization:ChangePassword' %}">Change Password</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bookings</a>
+                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'Helpers:booking' %}">Book Requests</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Organization:reqproduct' %}">Request items</a></li>
 
-                                <li><a class="dropdown-item" href="{% url 'Helpers:acceptedbooking' %}">Accepted Booking</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Helpers:rejectedbooking' %}">Rejected  Booking</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Organization:mybook' %}">My Bookings</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'Helpers:advertisement' %}">Give Advertisements</a></li>
-
-                                <li><a class="dropdown-item" href="{% url 'Helpers:PostProduct' %}">Post Products</a></li>
-                
-                            </ul>
-                        </li>
+                    
                     </ul>
                 </div>
             </div>

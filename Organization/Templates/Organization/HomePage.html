@@ -1,14 +1,16 @@
-<html>
- <center><br><br>
-   <h2> Welcome {{odata.org_name}} </h2>
-<br>
-<br>
-
-<a href="{% url 'Organization:MyProfile' %}">My Profile</a><br>
-<a href="{% url 'Organization:EditProfile' %}">Edit Profile</a><br>
-<a href="{% url 'Organization:ChangePassword' %}">Change Password</a><br>
-<a href="{% url 'Organization:reqproduct' %}">Request Itemss</a><br>
-<a href="{% url 'Organization:viewposts' %}">Book Products</a><br>
-<a href="{% url 'Organization:mybook' %}">My Bookings</a><br>
-</center>
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 align="center">Organization Homepage</h1><br><br><br><br>
+  <h2 align="center"> Welcome {{odata.org_name}} </h2>
+</body>
 </html>
+{% endblock content %}
