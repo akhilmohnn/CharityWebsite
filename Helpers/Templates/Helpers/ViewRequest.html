@@ -3,40 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Organization requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer; /* Add cursor pointer for images */
+        }
+
+        .action-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+
+        center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        /* CSS for enlarged image */
+        #enlarged-image-container {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            overflow: auto;
+        }
+
+        #enlarged-image {
+            margin-top: 20px;
+            max-width: 80%;
+            max-height: 80%;
+            margin: auto;
+            display: block;
+        }
+
+        .close-button {
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            font-size: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <center>
-        <h2>Organization requests</h2><br>
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table border="1" cellpadding="10">
-        <tr>
-            <td>SI No</td>
-            <td>Price</td>
-            <!-- <td>Content</td> -->
-            <td>Proof</td>
-            <td>Action</td>
-        </tr>
-        <tr>
+    <div class="container">
+        <h2>Organization requests</h2>
+        <table border="0">
+            <tr>
+                <th>SI No</th>
+                <th>Price</th>
+                <!-- <th>Content</th> -->
+                <th>Proof</th>
+                <th>Action</th>
+            </tr>
             {% for i in rqst1 %}
             <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.req_price}}</td>
-                <!-- <td>{{i.req_content}}</td> -->
-                <td><img src="{{ i.req_proof.url }}" alt="Image" width="200" height="200"></td>               
-                 <td>
-                     <a href="{% url 'Helpers:requestfull' i.id %}">view more</a>
-                    
-                </td>
-            
-    
-                
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.req_price }}</td>
+                <!-- <td>{{ i.req_content }}</td> -->
+                <td><img src="{{ i.req_proof.url }}" alt="Proof" width="100" onclick="enlargeImage('{{ i.req_proof.url }}')"></td>
+                <td><a class="action-link" href="{% url 'Helpers:requestfull' i.id %}">View more</a></td>
             </tr>
             {% endfor %}
-        </tr>
-    </table>
-</form>
-</center>
+        </table>
+    </div>
+
+    <!-- Enlarged Image Container -->
+    <div id="enlarged-image-container">
+        <span class="close-button" onclick="closeEnlargedImage()">&times;</span>
+        <img id="enlarged-image" src="" alt="Enlarged Image">
+    </div>
+
+    <script>
+        function enlargeImage(imageUrl) {
+            var enlargedImage = document.getElementById("enlarged-image");
+            enlargedImage.src = imageUrl;
+
+            var enlargedImageContainer = document.getElementById("enlarged-image-container");
+            enlargedImageContainer.style.display = "block";
+        }
+
+        function closeEnlargedImage() {
+            var enlargedImageContainer = document.getElementById("enlarged-image-container");
+            enlargedImageContainer.style.display = "none";
+        }
+    </script>
 </body>
 </html>

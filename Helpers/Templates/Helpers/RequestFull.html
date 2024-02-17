@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detailed View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td:first-child {
+            font-weight: bold;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    <center><br>
-        <h2>Detailed View</h2><br>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table border="1">
-            <tr>
-                
-                <td colspan="2"><img src="{{ rdata.req_proof.url }}" alt="Image" width="200" height="200"></td>
-            </tr>
+    <div class="container">
+        <h2>Detailed View</h2>
+        <img src="{{ rdata.req_proof.url }}" alt="Image">
+        <table>
             <tr>
                 <td>Type</td>
-                <td>{{rdata.req_request.request_name}}</td>
+                <td>{{ rdata.req_request.request_name }}</td>
             </tr>
-            {% if rdata.req_price == "" %}
-            {% else %}
+            {% if rdata.req_price %}
             <tr>
                 <td>Price</td>
-                <td>{{rdata.req_price}}</td>
+                <td>{{ rdata.req_price }}</td>
             </tr>
             {% endif %}
             <tr>
                 <td>Content</td>
-
-                
-                <td>{{rdata.req_content}}</td>
+                <td>{{ rdata.req_content }}</td>
             </tr>
-            {% if rdata.req_price == "" %}
-            <tr>
-                <td colspan="2" align="center">
-                    <a href="">Pay Now</a></td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="2" align="center">
-                    <a href="">Donate Now</a></td>
-            </tr>
-            {% endif %}
-
         </table>
-    </form>
-</center>
+        {% if not rdata.req_price %}
+        <div class="center-text">
+            <a href="#" class="btn">Pay Now</a>
+        </div>
+        {% else %}
+        <div class="center-text">
+            <a href="#" class="btn">Donate Now</a>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>

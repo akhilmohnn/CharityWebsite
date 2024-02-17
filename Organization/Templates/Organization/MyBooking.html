@@ -3,50 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .accepted {
+            color: green;
+        }
+
+        .rejected {
+            color: red;
+        }
+
+        .not-viewed {
+            color: yellow;
+        }
+    </style>
 </head>
 <body>
-    <center>
-        <h3>View your Bookings</h3> <br>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table border="1" cellpadding="10">
-            <tr>
-                <td>SI NO</td>
-                <td>Image</td>
-                <td>Content</td>
-                <td>Address</td>
-                <td>Contact</td>
-                <td>Status</td>
-                <td>Action</td>
-            </tr>
-            <tr>
+    <div class="container">
+        <h3>View Your Bookings</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>SI NO</th>
+                    <th>Image</th>
+                    <th>Content</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
                 {% for i in odata %}
                 <tr>
                     <td>{{forloop.counter}}</td>
-                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image" width="200" height="200"></td>
+                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image"></td>
                     <td>{{i.post_id.post_content}}</td>
                     <td>{{i.book_address}}</td>
                     <td>{{i.book_contact}}</td>
                     <td>
                         {% if i.status == 1 %}
-                        <p style="color: green;">Accepted</p>
+                        <p class="accepted">Accepted</p>
                         {% elif i.status ==  2 %}
-                        <p style="color: red;">Rejected</p>
+                        <p class="rejected">Rejected</p>
                         {% else %}
-                        <p style="color: yellow;">Not Yet Viewed</p>
+                        <p class="not-viewed">Not Yet Viewed</p>
                         {% endif %}
                     </td>
-                    <td><a href="">Cancel</a></td>
+                    <td><a href="#">Cancel</a></td>
                 </tr>
-
                 {% endfor %}
-            </tr>
-
-
-        </table>
-
-    </form>
-</center>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

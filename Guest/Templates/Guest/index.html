@@ -99,26 +99,26 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a class="nav-link click-scroll" href="#section_2">About</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_3">Causes</a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_4">Volunteer</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">News</a>
+                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registration</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="news.html">News Listing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Guest:newhelper' %}">Helper Registration</a></li>
 
-                                <li><a class="dropdown-item" href="news-detail.html">News Detail</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Guest:neworganization' %}">Organization Registration</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Guest:newmedicalshop' %}">MedicalSHop</a>
+                            <a class="nav-link" href="{% url 'Guest:newmedicalshop' %}">MedicalShop Register</a>
                         </li>
 
                         <li class="nav-item ms-3">
@@ -217,7 +217,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
                             <div class="featured-block d-flex justify-content-center align-items-center">
                                 <a href="donate.html" class="d-block">
-                                    <img src="images/icons/receive.png" class="featured-block-image img-fluid" alt="">
+                                    <img src="{% static 'Main/images/icons/receive.png' %}" class="featured-block-image img-fluid" alt="">
 
                                     <p class="featured-block-text">Make a <strong>Donation</strong></p>
                                 </a>
@@ -227,7 +227,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="featured-block d-flex justify-content-center align-items-center">
                                 <a href="donate.html" class="d-block">
-                                    <img src="images/icons/scholarship.png" class="featured-block-image img-fluid" alt="">
+                                    <img src="{% static 'Main/images/icons/scholarship.png' %}" class="featured-block-image img-fluid" alt="">
 
                                     <p class="featured-block-text"><strong>Scholarship</strong> Program</p>
                                 </a>
@@ -243,7 +243,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                     <div class="row">
 
                         <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                            <img src="images/group-people-volunteering-foodbank-poor-people.jpg" class="custom-text-box-image img-fluid" alt="">
+                            <img src="{% static 'Main/images/group-people-volunteering-foodbank-poor-people.jpg' %}" class="custom-text-box-image img-fluid" alt="">
                         </div>
 
                         <div class="col-lg-6 col-12">
@@ -310,7 +310,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                     <div class="row">
 
                         <div class="col-lg-6 col-md-5 col-12">
-                            <img src="images/portrait-volunteer-who-organized-donations-charity.jpg" class="about-image ms-lg-auto bg-light shadow-lg img-fluid" alt="">
+                            <img src="{% static 'Main/images/portrait-volunteer-who-organized-donations-charity.jpg' %}" class="about-image ms-lg-auto bg-light shadow-lg img-fluid" alt="">
                         </div>
 
                         <div class="col-lg-5 col-md-7 col-12">
@@ -372,7 +372,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
-                                <img src="images/causes/group-african-kids-paying-attention-class.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="{% static 'Main/images/causes/group-african-kids-paying-attention-class.jpg' %}" class="custom-block-image img-fluid" alt="">
 
                                 <div class="custom-block">
                                     <div class="custom-block-body">
@@ -404,7 +404,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
-                                <img src="images/causes/poor-child-landfill-looks-forward-with-hope.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="{% static 'Main/images/causes/poor-child-landfill-looks-forward-with-hope.jpg' %}" class="custom-block-image img-fluid" alt="">
 
                                 <div class="custom-block">
                                     <div class="custom-block-body">
@@ -436,7 +436,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="custom-block-wrap">
-                                <img src="images/causes/african-woman-pouring-water-recipient-outdoors.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="{% static 'Main/images/causes/african-woman-pouring-water-recipient-outdoors.jpg' %}" class="custom-block-image img-fluid" alt="">
 
                                 <div class="custom-block">
                                     <div class="custom-block-body">
@@ -511,7 +511,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <img src="images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg" class="volunteer-image img-fluid" alt="">
+                            <img src="{% static 'Main/images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg' %}" class="volunteer-image img-fluid" alt="">
 
                             <div class="custom-block-body text-center">
                                 <h4 class="text-white mt-lg-3 mb-lg-3">About Volunteering</h4>
@@ -536,7 +536,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <div class="news-block">
                                 <div class="news-block-top">
                                     <a href="news-detail.html">
-                                        <img src="images/news/medium-shot-volunteers-with-clothing-donations.jpg" class="news-image img-fluid" alt="">
+                                        <img src="{% static 'Main/images/news/medium-shot-volunteers-with-clothing-donations.jpg' %}" class="news-image img-fluid" alt="">
                                     </a>
 
                                     <div class="news-category-block">
@@ -587,7 +587,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <div class="news-block mt-3">
                                 <div class="news-block-top">
                                     <a href="news-detail.html">
-                                        <img src="images/news/medium-shot-people-collecting-foodstuff.jpg" class="news-image img-fluid" alt="">
+                                        <img src="{% static 'Main/images/news/medium-shot-people-collecting-foodstuff.jpg' %}" class="news-image img-fluid" alt="">
                                     </a>
 
                                     <div class="news-category-block">
@@ -814,19 +814,19 @@ https://templatemo.com/tm-581-kind-heart-charity
 
                                           <ol class="carousel-indicators">
                                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="0" class="active">
-                                                    <img src="images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                                    <img src="{% static 'Main/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg' %}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                                </li>
 
                                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="1" class="">
-                                                    <img src="images/avatar/portrait-young-redhead-bearded-male.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                                    <img src="{% static 'Main/images/avatar/portrait-young-redhead-bearded-male.jpg' %}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                                </li>
 
                                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="2" class="">
-                                                    <img src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                                    <img src="{% static 'Main/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg' %}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                                </li>
 
                                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="3" class="">
-                                                    <img src="images/avatar/studio-portrait-emotional-happy-funny.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                                    <img src="{% static 'Main/images/avatar/studio-portrait-emotional-happy-funny.jpg' %}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                                </li>
                                           </ol>
 
@@ -848,7 +848,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                                 <h2>Get in touch</h2>
 
                                 <div class="contact-image-wrap d-flex flex-wrap">
-                                    <img src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg" class="img-fluid avatar-image" alt="">
+                                    <img src="{% static 'Main/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg' %}" class="img-fluid avatar-image" alt="">
 
                                     <div class="d-flex flex-column justify-content-center ms-3">
                                         <p class="mb-0">Clara Barton</p>
