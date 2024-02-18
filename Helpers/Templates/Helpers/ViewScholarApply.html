@@ -1,0 +1,88 @@
+{% extends 'Helpers/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Scholarship Applications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .accept {
+            color: #fff;
+            background-color: #5bc1ac;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .reject {
+            color: #fff;
+            background-color: #f44336;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>View Scholarship Applications</h2>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Sl.no</th>
+                <th>Document</th>
+                <th>Date</th>
+                <th>Scholarship Name</th>
+                <th>Member Name</th>
+                <th>Action</th>
+            </tr>
+            {% for i in orgdata %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{ i.document.url }}"></td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.scholarship_name.scholarship_name }}</td>
+                <td>{{ i.org_name.org_name }}</td>
+                <td>
+                    {% if i.status == 1 %}
+                        <span style="color: green;">Accepted</span> | <a href="{% url 'Helpers:rejectscholar' i.id %}" class="reject">Reject</a>
+                    {% elif i.status == 2 %}
+                        <span style="color: red;">Rejected</span> | <a href="{% url 'Helpers:acceptscholar' i.id %}" class="accept">Accept</a>
+                    {% else %}
+                        <a href="{% url 'Helpers:acceptscholar' i.id %}" class="accept">Accept</a> | <a href="{% url 'Helpers:rejectscholar' i.id %}" class="reject">Reject</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% endblock content%}

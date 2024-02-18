@@ -22,7 +22,7 @@ class tbl_book(models.Model):
 
 class tbl_scholarshipapply(models.Model):
     status=models.IntegerField(default=0)
-    document=models.FileField(upload_to="MemberDocs/")
+    document=models.FileField(upload_to="Orgdoc/")
     scholarship_name=models.ForeignKey(tbl_scholarshipname,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add=True)
     org_name=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)

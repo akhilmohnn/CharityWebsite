@@ -1,119 +1,32 @@
+{% extends 'Helpers/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post product</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        input[type="file"], input[type="text"], textarea, select {
-            width: calc(100% - 16px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-
-        input[type="submit"], input[type="reset"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover, input[type="reset"]:hover {
-            background-color: #0056b3;
-        }
-
-        .product-list {
-            margin-top: 20px;
-        }
-
-        .product-list th, .product-list td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .product-list img {
-            max-width: 100px;
-            height: auto;
-        }
-
-        .action-link {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .action-link:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Post product</h2>
+    <div class="container" style="max-width: 800px; margin: 20px auto; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); padding: 20px;">
+        <h2 style="text-align: center; color: #333;">Post product</h2>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
+            <table style="width: 100%;">
                 <tr>
-                    <td>Image</td>
-                    <td><input type="file" name="post_image" id="post_image"></td>
+                    <td style="padding: 10px;">Image</td>
+                    <td style="padding: 10px;"><input type="file" name="post_image" id="post_image"></td>
                 </tr>
                 <tr>
-                    <td>Content</td>
-                    <td><textarea name="post_content" id="post_content" rows="5"></textarea></td>
+                    <td style="padding: 10px;">Content</td>
+                    <td style="padding: 10px;"><textarea name="post_content" id="post_content" rows="5"></textarea></td>
                 </tr>
                 <tr>
-                    <td>Requesttype</td>
-                    <td>
+                    <td style="padding: 10px;">Request Type</td>
+                    <td style="padding: 10px;">
                         <select name="post_request" id="post_request">
-                            <option value="select"></option>
+                            <option value="">Select</option>
                             {% for i in rqst %}
                             <option value="{{i.id}}">{{i.request_name}}</option>
                             {% endfor %}
@@ -121,26 +34,26 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <input type="submit" value="Post">
-                        <input type="reset" value="Cancel">
+                    <td colspan="2" style="padding: 10px;">
+                        <input type="submit" value="Post" style="width: 48%; padding: 10px; border: none; border-radius: 4px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s ease;">
+                        <input type="reset" value="Cancel" style="width: 48%; padding: 10px; border: none; border-radius: 4px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s ease;">
                     </td>
                 </tr>
             </table>
         </form>
-        <div class="product-list">
-            <h3>Product List</h3>
-            <table>
+        <div class="product-list" style="margin-top: 20px;">
+            <h3 style="text-align: center; color: #333;">Product List</h3>
+            <table style="width: 100%;">
                 <tr>
-                    <th>Image</th>
-                    <th>Content</th>
-                    <th>Action</th>
+                    <th style="padding: 10px;">Image</th>
+                    <th style="padding: 10px;">Content</th>
+                    <th style="padding: 10px;">Action</th>
                 </tr>
                 {% for i in post %}
                 <tr>
-                    <td><img src="{{ i.post_image.url }}" alt=""></td>
-                    <td>{{i.post_content}}</td>
-                    <td><a class="action-link" href="{% url 'Helpers:deleteproduct' i.id %}">Delete</a></td>
+                    <td style="padding: 10px;"><img src="{{ i.post_image.url }}" alt="" style="max-width: 100px; height: auto;"></td>
+                    <td style="padding: 10px;">{{i.post_content}}</td>
+                    <td style="padding: 10px;"><a href="{% url 'Helpers:deleteproduct' i.id %}" style="color: #007bff; text-decoration: none;">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -148,3 +61,4 @@
     </div>
 </body>
 </html>
+{% endblock content %}

@@ -7,7 +7,11 @@ from Organization.models import *
 def district(request):
     district_data=tbl_district.objects.all()
     if request.method=="POST":
-        tbl_district.objects.create(district_name=request.POST.get("district"))
+        datacount=tbl_district.objects.filter(district_name=request.POST.get("district")).count()
+        if datacount>0:
+            return render(request,"Admin/District.html",{'dis':district_data})
+        else:
+            tbl_district.objects.create(district_name=request.POST.get("district"))
         return render(request,"Admin/District.html",{'dis':district_data})
     else:
         return render(request,"Admin/District.html",{'dis':district_data})

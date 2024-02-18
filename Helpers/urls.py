@@ -22,6 +22,9 @@ urlpatterns = [
      path('rejectbooking/<int:rid>',views.rejectbooking,name="rejectbooking"),
      path('advertisement/',views.advertisement,name="advertisement"),
      path('scholarship/',views.scholar,name="Scholarship"),
+     path('ViewScholarApply/',views.viewscholarapply,name="ViewScholarApply"),
+     path('acceptscholar/<int:did>',views.acceptscholar,name="acceptscholar"),
+     path('rejectscholar/<int:did>',views.rejectscholar,name="rejectscholar"),
      
      
 ]

@@ -77,7 +77,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
         <nav class="navbar navbar-expand-lg bg-light shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{% url 'Helpers:Homepage'%}">
                     <img src="{% static 'Main/images/logo.png'%}" class="logo img-fluid" alt="Help the Helpless">
                     <span>
                         Help the Helpless
@@ -92,7 +92,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#top">Home</a>
+                            <a class="nav-link click-scroll" href="{% url 'Helpers:Homepage'%}">Home</a>
                         </li>
 
                         <li class="nav-item">
@@ -135,6 +135,9 @@ https://templatemo.com/tm-581-kind-heart-charity
                                 <li><a class="dropdown-item" href="{% url 'Helpers:advertisement' %}">Give Advertisements</a></li>
 
                                 <li><a class="dropdown-item" href="{% url 'Helpers:PostProduct' %}">Post Products</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Helpers:Scholarship' %}">Add scholarships</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Helpers:ViewScholarApply' %}">View scholarship requests</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Helpers:viewrequest' %}">View Organization requests</a></li>
                 
                             </ul>
                         </li>
@@ -142,11 +145,11 @@ https://templatemo.com/tm-581-kind-heart-charity
                 </div>
             </div>
         </nav>
-        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
 {% block content %}
 
 {% endblock content %}
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="site-footer">
     <div class="container">
         <div class="row">

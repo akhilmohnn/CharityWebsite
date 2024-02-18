@@ -106,15 +106,30 @@ def schapply(request,schid):
     if 'oid' in request.session:
         data=tbl_organization.objects.get(id=request.session["oid"])
         if request.method=="POST" and request.FILES:
-            tbl_scholarshipapply.objects.create(org_name=data,scholarship_name=schdata,
-         
-            document=request.FILES.get('filedoc'))
+            tbl_scholarshipapply.objects.create(org_name=data,scholarship_name=schdata,document=request.FILES.get('filedoc'))
             return render(request,"Organization/ScholarshipApply.html",{'data':data,'schdata':schdata})
         else:
-           # return render(request,"Member/scholarshipapply.html")
             return render(request,"Organization/ScholarshipApply.html",{'data':data,'schdata':schdata})
+    else:
+        return redirect("")
 
-
+def viewscholarshipapply(request):
+    
+    if 'oid' in request.session:
+        odata=tbl_organization.objects.get(id=request.session["oid"])
+        data=tbl_scholarshipapply.objects.filter(org_name=odata)
+        return render(request,"Organization/ViewScholarshipApply.html",{'datas':data,'data1':odata})
+    else:
+        return render(request,"Organization/ViewScholarshipApply.html",{'datas':data})
+    
+def scholarshipstatus(request):
+    if 'oid' in request.session:
+        data=tbl_organization.objects.get(id=request.session["oid"])
+        sdata=tbl_scholarshipapply.objects.filter(org_name=data)
+        return render(request,"Organization/ScholarshipStatus.html",{'datas':sdata,'data1':data})
+    else:
+        return render(request,"Organization/ScholarshipStatus.html",{'datas':sdata,'data':data})
+    
     
     
   

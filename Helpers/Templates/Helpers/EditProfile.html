@@ -1,3 +1,6 @@
+{% extends 'Helpers/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +43,7 @@
         input[type="submit"],
         input[type="reset"] {
             padding: 10px 20px;
-            background-color: #007bff; /* Blue button color */
+            background-color: #5bc1ac; /* Blue button color */
             color: #fff; /* White text color */
             border: none;
             border-radius: 4px;
@@ -49,7 +52,7 @@
         }
         input[type="submit"]:hover,
         input[type="reset"]:hover {
-            background-color: #0056b3; /* Darker blue color on hover */
+            background-color: #5bc1ac; /* Darker blue color on hover */
         }
     </style>
 </head>
@@ -83,3 +86,4 @@
     </form>
 </body>
 </html>
+{% endblock content %}

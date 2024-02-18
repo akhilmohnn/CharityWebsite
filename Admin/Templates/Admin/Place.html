@@ -4,6 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            margin: 50px auto;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        form table {
+            width: 100%;
+        }
+        form td {
+            padding: 10px;
+        }
+        form select, form input[type="text"], form input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            margin: 20px auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <form action="" method="post">
@@ -17,7 +77,6 @@
                         {% for i in district %}
                         <option value="{{i.id}}">{{i.district_name}}</option>
                         {% endfor %}
-
                     </select>
                 </td>
             </tr>
@@ -26,27 +85,26 @@
                 <td><input type="text" name="place" id=""></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Add"></td>
+                <td colspan="2"><input type="submit" value="Add"></td>
             </tr>
-
         </table>
     </form>
-    <center>
-        <table border="2">
-            <tr>
-                <td>SI NO</td>
-                <td>Place</td>
-            </tr>
-            {% for i in plc1 %}
-            <tr>
-                <td>{{forloop.counter }}</td>
-                <td>{{i.place_name}}</td>
-                <td>
-                <a href="{% url 'webbasic:editplace' i.id %}">Edit</a></td>
-                <td><a href="{% url 'webbasic:deleteplace' i.id %}">Delete</a></td>
-            </tr>
-            {%endfor%}
-        </table>
-    </center>
+    <table border="2">
+        <tr>
+            <th>SI NO</th>
+            <th>Place</th>
+            <th>Action</th>
+        </tr>
+        {% for i in plc1 %}
+        <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{i.place_name}}</td>
+            <td>
+                <a href="{% url 'webbasic:editplace' i.id %}">Edit</a>
+                <a href="{% url 'webbasic:deleteplace' i.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

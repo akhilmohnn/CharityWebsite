@@ -5,7 +5,7 @@
             <div style="border:1px solid black;margin:20px;padding:10px">
               <p>scholarship Name : {{i.scholarship_name}}</p>
                <p>scholarship Details : {{i.scholarship_details}}</p>
-               <center><a href="{% url 'Organization:ScholarshipApply' %}">Apply</a><br></center>
+               <center><a href="{% url 'Organization:ScholarshipApply' i.id %}">Apply</a><br></center>
                
                    </div>
 </td>

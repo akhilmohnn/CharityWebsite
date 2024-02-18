@@ -3,48 +3,86 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
 </head>
+
 <body>
     <form>
         {% csrf_token %}
-     
-        <table border="1" align="center" cellpadding="12">
+        <table border="0" align="center">
             <tr>
-                
-                <td colspan="2"><img src="{{hdata.helper_photo.url}}" width="150" height="150"></td>
+                <td colspan="2">
+                    <img src="{{hdata.helper_photo.url}}" width="150" height="150">
+                </td>
             </tr>
-         
             <tr>
-                <th>name</th>
+                <th>Name</th>
                 <td>{{hdata.helper_name}}</td>
             </tr>
             <tr>
-                <td>Email</td>
+                <th>Email</th>
                 <td>{{hdata.helper_email}}</td>
             </tr>
             <tr>
-                <td>Contact</td>
+                <th>Contact</th>
                 <td>{{hdata.helper_contact}}</td>
             </tr>
             <tr>
-                <td>Place</td>
+                <th>Place</th>
                 <td>{{hdata.helper_place.place_name}}</td>
             </tr>
-            
             <tr>
-                <td>password</td>
+                <th>Password</th>
                 <td>{{hdata.helper_password}}</td>
             </tr>
-          
-            </tr>
         </table>
-
-
     </form>
 </body>
+
 </html>
+
 {% endblock content %}

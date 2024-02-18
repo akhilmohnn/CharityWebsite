@@ -1,3 +1,6 @@
+{% extends 'Helpers/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +8,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], select {
+            width: calc(100% - 12px);
+            padding: 6px;
+            margin: 6px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background-color: #5bc1ac;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #5bc1ac;
+        }
+
+        a {
+            text-decoration: none;
+            color: #cf0f0f;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
+    <h2>Scholarship Form</h2>
     <form action="" method="post">
         {% csrf_token %}
-        <table border="4" align="center">
+        
+        <table>
             <tr>
                 <td>Name</td>
                 <td><input type="text" name="txt_name1" id="" value="" required="" autocomplete="off"> </td>
@@ -19,44 +94,44 @@
                 <td>Details</td>
                 <td><input type="text" name="txt_name2" id="" value="" required="" autocomplete="off"> </td>
             </tr>
-           <tr>
-            <td>ScholarshipType </td>
-            <td><select name="select_sch" id="" required="" autocomplete="off">
-                <option> --select--</option>
-                {% for i in misdata %}
-                <option value="{{ i.id }}">{{ i.scholarship_type }}</option>
-                {% endfor %}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center"><input type="submit" name="btn_save " id="" value="submit">
-                <input type="reset" name="btn_cancel" id="" value="cancel">
-            </td>
-        </tr>
+            <tr>
+                <td>Scholarship Type</td>
+                <td>
+                    <select name="select_sch" id="" required="" autocomplete="off">
+                        <option> --select--</option>
+                        {% for i in misdata %}
+                        <option value="{{ i.id }}">{{ i.scholarship_type }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btn_save" id="" value="Submit">
+                    <input type="reset" name="btn_cancel" id="" value="Cancel">
+                </td>
+            </tr>
         </table>
-        <br><br><br><br>
-    <table border="1" align="center" cellpadding="3">
+    </form>
+    <table>
         <tr>
-            <td>SI.no</td>
-            <td>name</td>
-            <td>details</td>
-            <td>scholarship_type</td>
-            <td>Action</td>
-
+            <th>SI.no</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Scholarship Type</th>
+            <th>Action</th>
         </tr>
         {% for i in disdata %}
         <tr>
-            
-            <td>{{forloop.counter}}</td>
-            <td>{{i.scholarship_name}}</td>
-            <td>{{i.scholarship_details}}</td>
-            <td>{{i.scholarship_type.scholarship_type}}</td>
-            
-            <td><a href="">Delete</a>
-               </td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.scholarship_name }}</td>
+            <td>{{ i.scholarship_details }}</td>
+            <td>{{ i.scholarship_type.scholarship_type }}</td>
+            <td><a href="#">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
-    </form>
 </body>
+
 </html>
+{% endblock content %}

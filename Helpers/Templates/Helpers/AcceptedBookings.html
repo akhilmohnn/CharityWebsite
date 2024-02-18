@@ -1,97 +1,40 @@
+{% extends 'Helpers/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        h3 {
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .action-links a {
-            color: #007bff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-
-        .action-links a:hover {
-            text-decoration: underline;
-        }
-
-        center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h3>Accepted Bookings List</h3>
+    <div class="container" style="max-width: 800px; margin: 20px auto; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px; overflow-x: auto;">
+        <h3 style="text-align: center; color: #333;">Accepted Bookings List</h3>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table border="1" cellpadding="10">
+            <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr>
-                    <td>SI NO</td>
-                    <td>Image</td>
-                    <td>Content</td>
-                    <td>Name</td>
-                    <td>Address</td>
-                    <td>Contact</td>
-                    <td>Name of Organization</td>
-                    <td>Action</td>
+                    <td style="padding: 10px;">SI NO</td>
+                    <td style="padding: 10px;">Image</td>
+                    <td style="padding: 10px;">Content</td>
+                    <td style="padding: 10px;">Name</td>
+                    <td style="padding: 10px;">Address</td>
+                    <td style="padding: 10px;">Contact</td>
+                    <td style="padding: 10px;">Name of Organization</td>
+                    <td style="padding: 10px;">Action</td>
                 </tr>
                 {% for i in odata %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image"></td>
-                    <td>{{ i.post_id.post_content }}</td>
-                    <td>{{ i.book_name }}</td>
-                    <td>{{ i.book_address }}</td>
-                    <td>{{ i.book_contact }}</td>
-                    <td>{{ i.organization_id.org_name }}</td>
-                    <td class="action-links">
-                        <a href="{% url 'Helpers:rejectbooking' i.id %}">Reject</a>
+                    <td style="padding: 10px;">{{ forloop.counter }}</td>
+                    <td style="padding: 10px;"><img src="{{ i.post_id.post_image.url }}" alt="Image" width="200" height="200"></td>
+                    <td style="padding: 10px;">{{ i.post_id.post_content }}</td>
+                    <td style="padding: 10px;">{{ i.book_name }}</td>
+                    <td style="padding: 10px;">{{ i.book_address }}</td>
+                    <td style="padding: 10px;">{{ i.book_contact }}</td>
+                    <td style="padding: 10px;">{{ i.organization_id.org_name }}</td>
+                    <td style="padding: 10px;" class="action-links">
+                        <a href="{% url 'Helpers:rejectbooking' i.id %}" style="color: #007bff; text-decoration: none; margin-right: 10px;">Reject</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -100,3 +43,4 @@
     </div>
 </body>
 </html>
+{% endblock content %}

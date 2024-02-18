@@ -90,9 +90,9 @@ def search(request):
     if request.method=="POST":
         place=tbl_place.objects.get(id=request.POST.get('sel_place'))
         
-        return render(request,'MedicalShop/Search.html',{'district':district_data,'type':type_data,'odata':odata})
+        return render(request,'Helpers/Search.html',{'district':district_data,'type':type_data,'odata':odata})
     else:
-           return render(request,'MedicalShop/Search.html',{'district':district_data,'type':type_data,'odata':odata})
+           return render(request,'Helpers/Search.html',{'district':district_data,'type':type_data,'odata':odata})
 
 def ajaxorg(request):
     if request.GET.get("tid")!="":
@@ -178,6 +178,23 @@ def scholar(request):
     else:
 
         return render(request,"Helpers/Scholarship.html",{'disdata':disdata,'misdata':misdata})
+    
+def viewscholarapply(request):
+    orgdata=tbl_scholarshipapply.objects.all()
+    return render(request,"Helpers/ViewScholarApply.html",{'orgdata':orgdata})
+
+def acceptscholar(request,did):
+    data=tbl_scholarshipapply.objects.get(id=did)
+    data.status=1
+    data.save()
+    return redirect("Helpers:ViewScholarApply")
+
+
+def rejectscholar(request,did):
+    data=tbl_scholarshipapply.objects.get(id=did)
+    data.status=2
+    data.save()
+    return redirect("Helpers:ViewScholarApply")    
 
    
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship Status</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 200px auto;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .on-process {
+        background-color: #ffd966; /* Light orange */
+    }
+    .accepted {
+        background-color: #90ee90; /* Green */
+    }
+    .rejected {
+        background-color: #ff6961; /* Red */
+    }
+</style>
+</head>
+<body>
+<h2 style="text-align: center;">Scholarship Status</h2>
+<table align="center">
+    <tr>
+        <th>Sl.no</th>
+        <th>Scholarship Name</th>
+        <th>Scholarship Status</th>
+    </tr>
+    {% if datas %}
+        {% for i in datas %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.scholarship_name.scholarship_name}}</td>
+                <td class="{% if i.status == 0 %}on-process{% elif i.status == 1 %}accepted{% else %}rejected{% endif %}">
+                    {% if i.status == 0 %}
+                        <p>Application on process</p>
+                    {% elif i.status == 1 %}
+                        <p>Application accepted</p>
+                    {% else %}
+                        <p>Application rejected</p>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="3">No results</td>
+        </tr>
+    {% endif %}
+</table>
+</body>
+</html>
