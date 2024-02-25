@@ -16,6 +16,7 @@ urlpatterns = [
      path('ScholarshipApply/<int:schid>',views.schapply,name="ScholarshipApply"),
      path('ViewScholarShipApply/',views.viewscholarshipapply,name="ViewScholarShipApply"),
      path('scholarshipstatus/', views.scholarshipstatus,name="scholarshipstatus"),
+     path('complaints/',views.complaint,name="complaint")
 
 
 

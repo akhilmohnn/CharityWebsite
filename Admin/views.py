@@ -177,6 +177,14 @@ def scholarshiptype(request):
         return render(request,"Admin/Scholarshiptype.html",{'scholarshiptype':disdata})
     else:
         return render(request,"Admin/Scholarshiptype.html",{'scholarshiptype':disdata})
+    
+def comptype(request):
+    comptype_data=tbl_comptype.objects.all()
+    if request.method=="POST":
+        tbl_comptype.objects.create(complaint_name=request.POST.get("comptype"))
+        return render(request,"Admin/ComplaintType.html",{'comptype': comptype_data})
+    else:
+        return render(request,"Admin/ComplaintType.html",{'comptype': comptype_data})    
 
 
 

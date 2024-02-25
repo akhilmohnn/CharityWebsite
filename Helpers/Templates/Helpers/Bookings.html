@@ -80,7 +80,7 @@
                 {% for i in odata %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image"></td>
+                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image" width="200" height="200"></td>
                     <td>{{ i.post_id.post_content }}</td>
                     <td>{{ i.book_name }}</td>
                     <td>{{ i.book_address }}</td>

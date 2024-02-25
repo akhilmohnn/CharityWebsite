@@ -1,106 +1,50 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Now</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        input[type="text"],
-        input[type="submit"] {
-            width: calc(100% - 20px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            margin-top: 20px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        img {
-            display: block;
-            margin: 0 auto;
-            max-width: 400px;
-            max-height: 200px;
-            width: auto;
-            height: auto;
-            border-radius: 8px;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
-        <h2>Book Now</h2>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    <div style="max-width: 400px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; margin-bottom: 20px;">Book Now</h2>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table border="1">
+            <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                     <td colspan="2" align="center">
-                        <img src="{{ post.post_image.url }}" alt="Image">
+                        <img src="{{ post.post_image.url }}" alt="Image" style="display: block; margin: 0 auto; max-width: 400px; max-height: 200px; width: auto; height: auto; border-radius: 8px;">
                     </td>
                 </tr>
                 <tr>
-                    <td>Content</td>
-                    <td>{{ post.post_content }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">Content</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ post.post_content }}</td>
                 </tr>
                 <tr>
-                    <td>Name</td>
-                    <td><input type="text" name="book_name" id="book_name"></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">Name</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><input type="text" name="book_name" id="book_name" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></td>
                 </tr>
                 <tr>
-                    <td>Address</td>
-                    <td><input type="text" name="book_address" id="book_address"></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">Address</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><input type="text" name="book_address" id="book_address" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></td>
                 </tr>
                 <tr>
-                    <td>Contact</td>
-                    <td><input type="text" name="book_contact" id="book_contact"></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">Contact</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><input type="text" name="book_contact" id="book_contact" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="Book Now">
+                        <input type="submit" value="Book Now" style="margin-top: 20px; background-color: #007bff; color: #fff; cursor: pointer; padding: 8px 20px; border: none; border-radius: 4px;">
                     </td>
                 </tr>
             </table>
         </form>
     </div>
+
 </body>
 </html>
+{% endblock content %}

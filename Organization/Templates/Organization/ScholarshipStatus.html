@@ -1,63 +1,47 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scholarship Status</title>
-<style>
-    table {
-        border-collapse: collapse;
-        width: 50%;
-        margin: 200px auto;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 10px;
-        text-align: center;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .on-process {
-        background-color: #ffd966; /* Light orange */
-    }
-    .accepted {
-        background-color: #90ee90; /* Green */
-    }
-    .rejected {
-        background-color: #ff6961; /* Red */
-    }
-</style>
 </head>
-<body>
-<h2 style="text-align: center;">Scholarship Status</h2>
-<table align="center">
-    <tr>
-        <th>Sl.no</th>
-        <th>Scholarship Name</th>
-        <th>Scholarship Status</th>
-    </tr>
-    {% if datas %}
-        {% for i in datas %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.scholarship_name.scholarship_name}}</td>
-                <td class="{% if i.status == 0 %}on-process{% elif i.status == 1 %}accepted{% else %}rejected{% endif %}">
-                    {% if i.status == 0 %}
-                        <p>Application on process</p>
-                    {% elif i.status == 1 %}
-                        <p>Application accepted</p>
-                    {% else %}
-                        <p>Application rejected</p>
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-    {% else %}
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+<h2 style="text-align: center; margin-top: 200px;">Scholarship Status</h2>
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <table style="border-collapse: collapse; width: 100%; border-radius: 10px;">
         <tr>
-            <td colspan="3">No results</td>
+            <th style="border: 1px solid black; padding: 10px; background-color: #f2f2f2; text-align: center;">Sl.no</th>
+            <th style="border: 1px solid black; padding: 10px; background-color: #f2f2f2; text-align: center;">Scholarship Name</th>
+            <th style="border: 1px solid black; padding: 10px; background-color: #f2f2f2; text-align: center;">Scholarship Status</th>
         </tr>
-    {% endif %}
-</table>
+        {% if datas %}
+            {% for i in datas %}
+                <tr>
+                    <td style="border: 1px solid black; padding: 10px; text-align: center;">{{forloop.counter}}</td>
+                    <td style="border: 1px solid black; padding: 10px; text-align: center;">{{i.scholarship_name.scholarship_name}}</td>
+                    <td style="border: 1px solid black; padding: 10px; text-align: center; {% if i.status == 0 %}background-color: #ffd966; /* Light orange */{% elif i.status == 1 %}background-color: #90ee90; /* Green */{% else %}background-color: #ff6961; /* Red */{% endif %};"> 
+                        {% if i.status == 0 %}
+                            <p>Application on process</p>
+                        {% elif i.status == 1 %}
+                            <p>Application accepted</p>
+                        {% else %}
+                            <p>Application rejected</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3" style="border: 1px solid black; padding: 10px; text-align: center;">No results</td>
+            </tr>
+        {% endif %}
+    </table>
+</div>
+
 </body>
 </html>
+{% endblock content %}

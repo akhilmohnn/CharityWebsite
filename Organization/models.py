@@ -26,5 +26,12 @@ class tbl_scholarshipapply(models.Model):
     scholarship_name=models.ForeignKey(tbl_scholarshipname,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add=True)
     org_name=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)
+
+class tbl_complaint(models.Model):  
+    complainttitle=models.CharField(max_length=50)
+    complainttype=models.ForeignKey(tbl_comptype,on_delete=models.CASCADE) 
+    content=models.CharField(max_length=50)
+    complaintdate=models.DateField(auto_now_add=True) 
+    organization=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)
       
     

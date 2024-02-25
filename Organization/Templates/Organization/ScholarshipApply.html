@@ -1,41 +1,44 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Apply for Scholarship</title>
 </head>
-<body>
-    <center><h2>Apply the scholarship</h2></center>
-    <form method="post" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-      
-        <table border="3" cellpadding="10" align="center">
-            {% if schdata %}
-            
-            <tr>
-                <td>name</td>
-                <td>{{ schdata.scholarship_name}}</td>
-            </tr>
-            <tr>
-                <td>details</td>
-                <td>{{ schdata.scholarship_details}}</td>
-            </tr>
-            
-            {% endif %}
-            <tr>
-            
-                
-                <td>document</td>
-                <td><input type="file" id="" name="filedoc" required="" autocomplete="off"></td>
-            </tr>
-          
-            <tr>
-                <td colspan="2" align="center"><input type="submit" name="btn_submit" id="" value="save">
-                <input type="reset" name="btn_cancel" id="" value="cancel"></td>
-               
-            </tr>
-        </table>
-       
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4;">
+
+    <div style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; color: #333;">Apply for Scholarship</h2>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table style="width: 100%;">
+                {% if schdata %}
+                <tr>
+                    <td>Name</td>
+                    <td>{{ schdata.scholarship_name}}</td>
+                </tr>
+                <tr>
+                    <td>Details</td>
+                    <td>{{ schdata.scholarship_details}}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Document</td>
+                    <td><input type="file" name="filedoc" required autocomplete="off" style="width: 100%; padding: 8px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="btn_submit" value="Apply" style="padding: 10px 20px; margin-top: 10px; background-color: #5bc1ac; border: none; color: #fff; cursor: pointer; border-radius: 5px;">
+                        <input type="reset" name="btn_cancel" value="Cancel" style="padding: 10px 20px; margin-top: 10px; background-color: #5bc1ac; border: none; color: #fff; cursor: pointer; border-radius: 5px;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
 </body>
 </html>
+{% endblock content %}

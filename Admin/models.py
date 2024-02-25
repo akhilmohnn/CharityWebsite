@@ -28,6 +28,9 @@ class tbl_request(models.Model):
 class tbl_scholarshiptype(models.Model):
     scholarship_type=models.CharField(max_length=50)
 
+class tbl_comptype(models.Model):
+    complaint_name=models.CharField(max_length=50)    
+
 
 
 

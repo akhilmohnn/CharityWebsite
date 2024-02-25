@@ -8,7 +8,9 @@ from Helpers.models import *
 
 def homepage(request):
     odata=tbl_organization.objects.get(id=request.session['oid'])
-    return render(request,"Organization/Homepage.html",{'odata':odata})
+    postdata=tbl_advertisement.objects.filter(status=1)
+
+    return render(request,"Organization/Homepage.html",{'odata':odata,'post':postdata})
 
 def myprofile(request):
     odata=tbl_organization.objects.get(id=request.session['oid'])
@@ -130,6 +132,22 @@ def scholarshipstatus(request):
     else:
         return render(request,"Organization/ScholarshipStatus.html",{'datas':sdata,'data':data})
     
-    
+def complaint(request):
+    orgdata=tbl_organization.objects.get(id=request.session['oid'])
+    comdata=tbl_comptype.objects.all()
+    compdata=tbl_complaint.objects.all()
+    if request.method=="POST":
+        com=tbl_comptype.objects.get(id=request.POST.get("select_com"))
+        tbl_complaint.objects.create(
+            
+            complainttitle = request.POST.get("txt_name"),
+            content = request.POST.get("txt_content"),
+            complainttype=com,
+            organization=orgdata,
+
+        )
+        return render(request,"Organization/Complaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata}) 
+    else:
+        return render(request,"Organization/Complaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata})    
     
   

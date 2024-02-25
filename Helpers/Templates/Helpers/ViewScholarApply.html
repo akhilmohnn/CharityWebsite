@@ -66,7 +66,7 @@
             {% for i in orgdata %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><img src="{{ i.document.url }}"></td>
+                <td><img src="{{ i.document.url }}" width="200"  height="200"></td>
                 <td>{{ i.date }}</td>
                 <td>{{ i.scholarship_name.scholarship_name }}</td>
                 <td>{{ i.org_name.org_name }}</td>
