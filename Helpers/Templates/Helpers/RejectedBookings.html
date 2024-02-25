@@ -35,7 +35,7 @@
                     <td>{{ i.book_contact }}</td>
                     <td>{{ i.organization_id.org_name }}</td>
                     <td class="action-links">
-                        <a href="{% url 'Helpers:acceptbooking' i.id %}">Accept</a>
+                        <a href="{% url 'Helpers:acceptbooking' i.id %}" style="color: #007bff; text-decoration: none; margin-right: 10px;">Accept</a>
                     </td>
                 </tr>
                 {% endfor %}
