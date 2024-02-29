@@ -16,7 +16,7 @@
                     <td>
                         <select class="form-control" name="select_com" id="">
                             <option>--select--</option>
-                            {% for i in comptyp %}
+                            {% for i in comdata %}
                                 <option value="{{ i.id }}">{{ i.complaint_name }}</option>
                             {% endfor %}
                         </select>
@@ -50,10 +50,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in complaint %}
+            {% for i in comdata %}
                 <tr>
                     <td>{{forloop.counter}}</td>
                     <td>{{i.complaint_name}}</td>
+                    <td>{{i.complainttitle}}</td>
+                    <td>{{i.content}}</td>
+
+
                     <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
                 </tr>
             {% endfor %}
