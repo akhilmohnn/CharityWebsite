@@ -50,10 +50,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in comdata %}
+            {% for i in compdata %}
                 <tr>
                     <td>{{forloop.counter}}</td>
-                    <td>{{i.complaint_name}}</td>
+                    <td>{{i.complainttype.complaint_name}}</td>
                     <td>{{i.complainttitle}}</td>
                     <td>{{i.content}}</td>
 

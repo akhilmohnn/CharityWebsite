@@ -184,7 +184,14 @@ def comptype(request):
         tbl_comptype.objects.create(complaint_name=request.POST.get("comptype"))
         return render(request,"Admin/ComplaintType.html",{'comptype': comptype_data})
     else:
-        return render(request,"Admin/ComplaintType.html",{'comptype': comptype_data})    
+        return render(request,"Admin/ComplaintType.html",{'comptype': comptype_data})  
+
+def complaint(request):
+    orgdata=tbl_organization.objects.get(id=request.session['oid'])
+    comdata=tbl_comptype.objects.all()
+    compdata=tbl_complaint.objects.all()
+    return render(request,"Admin/ViewComplaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata})
+   
 
 
 

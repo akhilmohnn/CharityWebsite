@@ -148,6 +148,31 @@ def complaint(request):
         )
         return render(request,"Organization/Complaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata}) 
     else:
-        return render(request,"Organization/Complaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata})    
+        return render(request,"Organization/Complaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata})  
     
-  
+def starrating(request,hid):
+    parray=[1,2,3,4,5]
+    hdata=tbl_helper.objects.get(id=hid)
+    counts=0
+    counts=stardata=tbl_rating.objects.filter(helper=hdata).count()
+    if counts>0:
+        res=0
+        stardata=tbl_rating.objects.filter(helper=hdata).order_by('-datetime')
+        for i in stardata:
+            res=res+i.rating_data
+        avg=res//counts
+        return render(request,"Organization/HelperRating.html",{'hid':hid,'data':stardata,'ar':parray,'avg':avg,'count':counts})
+    else:
+         return render(request,"Organization/HelperRating.html",{'hid':hid})
+
+def ajaxstar(request):
+    parray=[1,2,3,4,5]
+    rating_data=request.GET.get('rating_data')
+    org_name=request.GET.get('org_name')
+    org_review=request.GET.get('org_review')
+    helper_id=request.GET.get('workid')
+    
+    hdata=tbl_helper.objects.get(id=helper_id)
+    tbl_rating.objects.create(org_name=org_name,org_review=org_review,rating_data=rating_data,helper=hdata)
+    stardata=tbl_rating.objects.filter(helper=hdata).order_by('-datetime')
+    return render(request,"Organization/AjaxRating.html",{'data':stardata,'ar':parray})  

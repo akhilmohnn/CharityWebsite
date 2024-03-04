@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1> View Complaint</h1></center>
+    <table class="table table-bordered table-striped" align="center">
+        <thead>
+            <tr>
+                <th>Sl.no</th>
+                <th>Organization</th>
+                <th>Complaint Type</th>
+                <th>Complaint Title</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in compdata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.organization.org_name}}</td>
+                    <td>{{i.complainttype.complaint_name}}</td>
+                    <td>{{i.complainttitle}}</td>
+                    <td>{{i.content}}</td>
+
+
+                    <td><a href="" class="btn btn-danger btn-sm">Give Reply</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

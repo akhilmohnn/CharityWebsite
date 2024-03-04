@@ -1,3 +1,6 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,41 +10,56 @@
 </head>
 <body>
     
-    <form>
+    <form style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin: 20px auto; max-width: 500px;">
         {% csrf_token %}
      
-        <table border="1" align="center" cellpadding="12">
+        <table border="1" align="center" cellpadding="12" style="border-collapse: collapse; width: 100%;">
             <tr>
-                
-                <td align="center" colspan="2"><img src="{{odata.org_logo.url}}" width="150" height="150"></td>
-            </tr>
-         
-            <tr>
-                <th>name</th>
-                <td>{{odata.org_name}}</td>
+                <td align="center" colspan="2" style="padding: 12px;"><img src="{{odata.org_logo.url}}" width="150" height="150" style="display: block; margin: 0 auto;"></td>
             </tr>
             <tr>
-                <td>Email</td>
-                <td>{{odata.org_email}}</td>
+                <th style="padding: 12px;">Name</th>
+                <td style="padding: 12px;">{{odata.org_name}}</td>
             </tr>
             <tr>
-                <td>Contact</td>
-                <td>{{odata.org_contact}}</td>
+                <td style="padding: 12px;">Email</td>
+                <td style="padding: 12px;">{{odata.org_email}}</td>
             </tr>
             <tr>
-                <td>Place</td>
-                <td>{{odata.org_place.place_name}}</td>
+                <td style="padding: 12px;">Contact</td>
+                <td style="padding: 12px;">{{odata.org_contact}}</td>
             </tr>
-            
             <tr>
-                <td>password</td>
-                <td>{{odata.org_password}}</td>
+                <td style="padding: 12px;">Place</td>
+                <td style="padding: 12px;">{{odata.org_place.place_name}}</td>
             </tr>
-          
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="button" onclick="editProfile()">Edit Profile</button>
+                    <button type="button" onclick="changePassword()">Change Password</button>
+
+                </td>
             </tr>
         </table>
-
-
     </form>
+
+    <script>
+        function editProfile() {
+            // Redirect to the edit profile page or perform necessary actions
+            // You can replace the "#" with the URL of your edit profile page
+            window.location.href = "{% url 'Organization:EditProfile' %}";
+        }
+        function changePassword() {
+            // Redirect to the edit profile page or perform necessary actions
+            // You can replace the "#" with the URL of your edit profile page
+            window.location.href = "{% url 'Organization:ChangePassword' %}";
+        }
+
+        function goBack() {
+            // Redirect back to the previous page or perform necessary actions
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
+{% endblock content %}

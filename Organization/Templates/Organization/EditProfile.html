@@ -1,3 +1,6 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,40 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <button type="button" onclick="goBack()">Home Page</button>
-
-
-    <form method="post" action="">
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <form method="post" action="" style="margin: 0 auto; max-width: 500px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
         {% csrf_token %}
-        <table align="center" cellpadding="10" border="1">
+        <table align="center" cellpadding="10" border="1" style="width: 100%; border-collapse: collapse;">
             <tr>
-                <td>name</td>
-                <td><input type="text" id="" name="txt_name" value="{{odata.org_name}}"></td>
+                <td style="padding: 10px;">Name</td>
+                <td style="padding: 10px;"><input type="text" id="" name="txt_name" value="{{odata.org_name}}" style="width: 100%;"></td>
             </tr>
             <tr>
-                <td>contact</td>
-                <td><input type="text" id="" name="txt_con" value="{{odata.org_contact}}"></td>
+                <td style="padding: 10px;">Contact</td>
+                <td style="padding: 10px;"><input type="text" id="" name="txt_con" value="{{odata.org_contact}}" style="width: 100%;"></td>
             </tr>
             <tr>
-                <td>email</td>
-                <td><input type="email" id="" name="txt_email" value="{{odata.org_email}}"></td>
+                <td style="padding: 10px;">Email</td>
+                <td style="padding: 10px;"><input type="email" id="" name="txt_email" value="{{odata.org_email}}" style="width: 100%;"></td>
             </tr>
             <tr>
-                <td>address</td>
-                <td><textarea name="txt_address" id="" cols="30" rows="10" >{{odata.org_address}}</textarea></td>
+                <td style="padding: 10px;">Address</td>
+                <td style="padding: 10px;"><textarea name="txt_address" id="" cols="30" rows="10" style="width: 100%;">{{odata.org_address}}</textarea></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" name="btn_submit" id="" value="update">
-                <input type="reset" name="btn_cancel" id="" value="cancel"></td>
-                
+                <td colspan="2" align="center" style="padding: 10px;"><input type="submit" name="btn_submit" id="" value="Update" style="padding: 8px 16px; background-color: #5bc1ac; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+                <input type="reset" name="btn_cancel" id="" value="Cancel" style="padding: 8px 16px; background-color: #dc3545; color: #fff; border: none; border-radius: 4px; cursor: pointer;"></td>
             </tr>
         </table>
     </form>
 </body>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 </html>
+{% endblock content %}

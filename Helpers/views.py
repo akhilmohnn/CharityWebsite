@@ -153,6 +153,7 @@ def rejectbooking(request,rid):
 def advertisement(request):
     ad=tbl_advertisement.objects.all()
     hdata=tbl_helper.objects.get(id=request.session['hid'])  
+    addata=tbl_advertisement.objects.filter(helpers=hdata)
     if request.method=="POST":
         title=request.POST.get("ad_title")
         image=request.FILES.get("ad_image")
@@ -161,9 +162,9 @@ def advertisement(request):
 
         tbl_advertisement.objects.create(ad_title=title,ad_image=image,ad_content=content,ad_contact=contact,helpers=hdata)
 
-        return render(request,'Helpers/Advertisement.html',{'ad':ad}) 
+        return render(request,'Helpers/Advertisement.html',{'ad':ad,'addata':addata}) 
     else:
-        return render(request,'Helpers/Advertisement.html',{'ad':ad})
+        return render(request,'Helpers/Advertisement.html',{'ad':ad,'addata':addata})
     
 
 def scholar(request):

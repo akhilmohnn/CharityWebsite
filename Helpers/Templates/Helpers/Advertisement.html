@@ -37,6 +37,34 @@
                     </td>
                 </tr>
             </table>
+            <h2>Advertisement Requests</h2>
+        <table>
+            <tr>
+                <th>SINo</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+            {% for i in addata %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.ad_title}}</td>
+                <td><img src="{{ i.ad_image.url }}" alt="Image" width="150" height="150"></td>
+                <td>{{i.ad_content}}</td>
+                <td>{{i.ad_contact}}</td>
+                <td>{% if i.status == "1" %}
+                    <p>Accepted</p>
+                    {% elif i.status == "2" %}
+                    <p>Rejected</p>
+                    {% else %}
+                    <p>Pending</p>
+                    {% endif %}
+                    </td>
+            </tr>
+            {% endfor %}
+        </table>
         </form>
     </div>
 </body>

@@ -1,112 +1,47 @@
-
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Bookings</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        td, th {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f0f0f0;
-            font-weight: bold;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        .accepted {
-            color: green;
-        }
-
-        .rejected {
-            color: red;
-        }
-
-        .not-viewed {
-            color: yellow;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
-        <h3>View Your Bookings</h3>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <h3 style="text-align: center; margin-bottom: 20px;">View Your Bookings</h3>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table border="1" cellpadding="10">
+            <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <th>SI NO</th>
-                    <th>Image</th>
-                    <th>Content</th>
-                    <th>Address</th>
-                    <th>Contact</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">SI NO</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Image</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Content</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Address</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Contact</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Status</th>
+                    <th style="padding: 10px; background-color: #f0f0f0; font-weight: bold;">Action</th>
                 </tr>
                 {% for i in odata %}
                 <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td><img src="{{ i.post_id.post_image.url }}" alt="Image"></td>
-                    <td>{{i.post_id.post_content}}</td>
-                    <td>{{i.book_address}}</td>
-                    <td>{{i.book_contact}}</td>
-                    <td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">{{forloop.counter}}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;"><img src="{{ i.post_id.post_image.url }}" alt="Image" style="max-width: 100%; height: auto; border-radius: 8px;"></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">{{i.post_id.post_content}}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">{{i.book_address}}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">{{i.book_contact}}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">
                         {% if i.status == 1 %}
-                        <p class="accepted">Accepted</p>
+                        <p style="margin: 0; color: green;">Accepted</p>
                         {% elif i.status ==  2 %}
-                        <p class="rejected">Rejected</p>
+                        <p style="margin: 0; color: red;">Rejected</p>
                         {% else %}
-                        <p class="not-viewed">Not Yet Viewed</p>
+                        <p style="margin: 0; color: yellow;">Not Yet Viewed</p>
                         {% endif %}
                     </td>
-                    <td><a href="#">Cancel</a></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;"><a href="#" style="text-decoration: none; color: #007bff;">Cancel</a></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;"><a href="{% url 'Organization:helperrating' i.post_id.helpers.id %}" style="text-decoration: none; color: #007bff;">Rate Now</a></td>
+
                 </tr>
                 {% endfor %}
             </table>
@@ -114,3 +49,4 @@
     </div>
 </body>
 </html>
+{% endblock content %}

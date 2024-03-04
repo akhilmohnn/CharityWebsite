@@ -16,7 +16,9 @@ urlpatterns = [
      path('ScholarshipApply/<int:schid>',views.schapply,name="ScholarshipApply"),
      path('ViewScholarShipApply/',views.viewscholarshipapply,name="ViewScholarShipApply"),
      path('scholarshipstatus/', views.scholarshipstatus,name="scholarshipstatus"),
-     path('complaints/',views.complaint,name="complaint")
+     path('complaints/',views.complaint,name="complaint"),
+     path('helperstar/<int:hid>',views.starrating,name="helperrating"),
+     path('ajaxstar/',views.ajaxstar,name="ajaxstar"),
 
 
 

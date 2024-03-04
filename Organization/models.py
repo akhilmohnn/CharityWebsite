@@ -33,5 +33,12 @@ class tbl_complaint(models.Model):
     content=models.CharField(max_length=50)
     complaintdate=models.DateField(auto_now_add=True) 
     organization=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)
+
+class tbl_rating(models.Model):
+    rating_data=models.IntegerField()
+    org_name=models.CharField(max_length=50)
+    org_review=models.CharField(max_length=50)
+    datetime=models.DateTimeField(auto_now_add=True)
+    helper=models.ForeignKey(tbl_helper,on_delete=models.CASCADE,null=True)
       
     
