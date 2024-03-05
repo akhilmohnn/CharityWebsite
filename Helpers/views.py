@@ -200,7 +200,11 @@ def rejectscholar(request,did):
     data.save()
     return redirect("Helpers:ViewScholarApply")    
 
-   
+def add_pay(request,did):
+    data=tbl_advertisement.objects.get(id=did)
+    data.status=3
+    data.save()
+    return redirect("Helpers:advertisement") 
 
 
 

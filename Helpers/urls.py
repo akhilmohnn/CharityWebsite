@@ -25,6 +25,7 @@ urlpatterns = [
      path('ViewScholarApply/',views.viewscholarapply,name="ViewScholarApply"),
      path('acceptscholar/<int:did>',views.acceptscholar,name="acceptscholar"),
      path('rejectscholar/<int:did>',views.rejectscholar,name="rejectscholar"),
+      path('addpay/<int:did>',views.add_pay,name="ad_pay"),
      
      
 ]
