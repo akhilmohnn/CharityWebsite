@@ -11,8 +11,11 @@ def homepage(request):
     return render(request,"Helpers/Homepage.html",{'hdata':hdata})
 
 def myprofile(request):
-    hdata=tbl_helper.objects.get(id=request.session['hid'])
-    return render(request,"Helpers/MyProfile.html",{'hdata':hdata})
+    if 'hid' in request.session:
+        hdata=tbl_helper.objects.get(id=request.session['hid'])
+        return render(request,"Helpers/MyProfile.html",{'hdata':hdata})
+    else :
+        return redirect("Guest:login")
 
 def changep(request):
     hdata=tbl_helper.objects.get(id=request.session['hid'])
