@@ -1,3 +1,6 @@
+<script>
+  $("input[name='expiry-data']").mask("00 / 00");
+</script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
 
 <div class="wrapper">
@@ -6,7 +9,9 @@
       <p>p</p>
     </div>
     
-    
+    <form action="" method="post">
+
+      {% csrf_token %}
     <h2>Payment Gateway</h2>
     <div class="form">
       <div class="card space icon-relative">
@@ -33,12 +38,13 @@
       </div>
         
       <div class="btn">
-        Pay
+       <button type="submit" >Pay</button>
       </div> 
       
     </div>
   </div>
 </div>
+</form>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
 

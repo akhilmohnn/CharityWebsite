@@ -8,7 +8,7 @@ from Helpers.models import *
 
 def homepage(request):
     odata=tbl_organization.objects.get(id=request.session['oid'])
-    postdata=tbl_advertisement.objects.filter(status=1)
+    postdata=tbl_advertisement.objects.filter(status=3)
 
     return render(request,"Organization/Homepage.html",{'odata':odata,'post':postdata})
 

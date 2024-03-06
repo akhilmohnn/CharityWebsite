@@ -53,6 +53,7 @@
                 <td style="padding: 8px;">Price</td>
                 <td style="padding: 8px;">Content</td>
                 <td style="padding: 8px;">Action</td>
+                <td style="padding: 8px;">Status</td>
             </tr>
             {% for i in rqst1 %}
             <tr>
@@ -60,6 +61,12 @@
                 <td style="padding: 8px;">{{i.req_price}}</td>
                 <td style="padding: 8px;">{{i.req_content}}</td>
                 <td style="padding: 8px;"><a href="#" style="text-decoration: none; color: #007bff;">Delete</a></td>
+                <td style="padding: 8px;">
+                {% if i.status == "3" %}
+                Paid
+            {% else %}
+            Donated
+        {% endif %}</td>
             </tr>
             {% endfor %}
         </table>

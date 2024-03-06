@@ -200,11 +200,30 @@ def rejectscholar(request,did):
     data.save()
     return redirect("Helpers:ViewScholarApply")    
 
+def add_pay(request,did):
+    data=tbl_advertisement.objects.get(id=did)
+    if request.method=="POST":
+        data.status=3
+        data.save()
+        return redirect("Helpers:advertisement")
+    else:
+        retunh render(request,"Helpers/Payment.html") 
+def paynow(request,did):
+    data=tbl_helprequest.objects.get(id=did)
+    if request.method=="POST":
+        data.status=3
+        data.save()
+        return redirect("Helpers:viewrequest")
+    else:
+        retunh render(request,"Helpers/Payment.html") 
+
+def donatenow(request,did):
+    data=tbl_helprequest.objects.get(id=did)
    
-
-
-
-
+        data.status=2
+        data.save()
+       
+        return redirect("Helpers:viewrequest")
     
 
 

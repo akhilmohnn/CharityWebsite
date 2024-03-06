@@ -55,9 +55,11 @@
                 <td>{{i.ad_content}}</td>
                 <td>{{i.ad_contact}}</td>
                 <td>{% if i.status == "1" %}
-                    <p>Accepted</p>
+                    <p>Accepted |<a href="{% URL 'Helpers:ad_pay' i.id %}">PAY now</a></p>
                     {% elif i.status == "2" %}
                     <p>Rejected</p>
+                    {% elif i.status == "3" %}
+                    <p>Paid</p>
                     {% else %}
                     <p>Pending</p>
                     {% endif %}

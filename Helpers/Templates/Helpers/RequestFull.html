@@ -85,11 +85,11 @@
         </table>
         {% if not rdata.req_price %}
         <div class="center-text">
-            <a href="#" class="btn">Pay Now</a>
+            <a href="{% url 'Helpers:paynow' i.id %}" class="btn">Pay Now</a>
         </div>
         {% else %}
         <div class="center-text">
-            <a href="#" class="btn">Donate Now</a>
+            <a href="{% url 'Helpers:donatenow' i.id %}" class="btn">Donate Now</a>
         </div>
         {% endif %}
     </div>
