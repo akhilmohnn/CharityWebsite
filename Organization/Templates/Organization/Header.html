@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+        <title>Help the Helpless</title>
 
         <!-- CSS FILES -->        
         <link href="{% static 'Main/css/bootstrap.min.css'%}" rel="stylesheet">
@@ -134,6 +134,17 @@ https://templatemo.com/tm-581-kind-heart-charity
                                 <li><a class="dropdown-item" href="{% url 'Organization:viewscholarship' %}">View Scolarships</a></li>
                                 <li><a class="dropdown-item" href="{% url 'Organization:ViewScholarShipApply' %}">Scholarships Applied</a></li>
                                 <li><a class="dropdown-item" href="{% url 'Organization:scholarshipstatus' %}">Scholarship Status</a></li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+
+                                <li><a class="dropdown-item" href="{% url 'Organization:complaint' %}">Complaint Here!</a></li>
+                                
 
 
                             </ul>

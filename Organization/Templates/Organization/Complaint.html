@@ -1,3 +1,6 @@
+{% extends 'Organization/header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +27,7 @@
                 </tr>
                 <tr>
                     <td>Complaint Title</td>
-                    <td><input type="text" class="form-control" name="txt_name" id=""></td>
+                    <td><input type="text" class="form-control" name="txt_name" id="" placeholder="Mention the Helper's name also"></td>
                 </tr>
                 <tr>
                     <td>Content</td>
@@ -65,3 +68,4 @@
     </table>
 </body>
 </html>
+{% endblock content %}
