@@ -77,9 +77,13 @@ def viewrequest(request):
     rqst1=tbl_helprequest.objects.filter(status=1)
     return render(request,"Helpers/ViewRequest.html",{'rqst1':rqst1}) 
 
-def requestfull(request,aid):
-    rdata=tbl_helprequest.objects.get(id=aid)
-    return render(request,"Helpers/RequestFull.html",{'rdata':rdata}) 
+def requestfull(request, aid):
+    rdata = tbl_helprequest.objects.get(id=aid)
+    return render(request, "Helpers/RequestFull.html", {'rdata': rdata})
+
+# def requestfull(request,aid):
+#     rdata=tbl_helprequest.objects.get(id=aid)
+#     return render(request,"Helpers/RequestFull.html",{'rdata':rdata}) 
 
 # def rqstfull(request,aid):
 #     rdata=tbl_helprequest.objects.get(id=aid)
@@ -183,6 +187,10 @@ def scholar(request):
 
         return render(request,"Helpers/Scholarship.html",{'disdata':disdata,'misdata':misdata})
     
+def deletescholar(request,did):
+    tbl_scholarshipname.objects.get(id=did).delete()
+    return redirect("Helpers:Scholarship")    
+    
 def viewscholarapply(request):
     orgdata=tbl_scholarshipapply.objects.all()
     return render(request,"Helpers/ViewScholarApply.html",{'orgdata':orgdata})
@@ -208,12 +216,13 @@ def add_pay(request,did):
         return redirect("Helpers:advertisement")
     else:
         return render(request,"Helpers/Payment.html") 
+    
 def paynow(request,did):
     data=tbl_helprequest.objects.get(id=did)
     if request.method=="POST":
         data.status=3
         data.save()
-        return redirect("Helpers:viewrequest")
+        return redirect("Helpers:runpayment")
     else:
         return render(request,"Helpers/Payment.html") 
 
@@ -224,9 +233,11 @@ def donatenow(request,did):
         
     return redirect("Helpers:viewrequest")
     
+def runpayment(request):
+    return render(request,"Helpers/runpayment.html")
 
-
-
+def paysucessful(request):
+    return render(request,"Helpers/paysucessfull.html")
 
 
 

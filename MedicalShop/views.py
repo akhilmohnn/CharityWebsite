@@ -66,3 +66,8 @@ def ajaxorg(request):
             districtdata=tbl_district.objects.get(id=request.GET.get("did"))
             data=tbl_organization.objects.filter(org_place__district_id=districtdata,status=1)
             return render(request,"MedicalShop/Ajaxorg.html",{'data':data})
+
+
+def homepage(request):
+    mdata=tbl_medicalshop.objects.get(id=request.session['mid'])
+    return render(request,"MedicalShop/Homepage.html",{'mdata':mdata})        

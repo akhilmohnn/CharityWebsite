@@ -84,6 +84,8 @@ def login(request):
 
             orgcount=tbl_organization.objects.filter(org_email=email,org_password=password,status=1).count()
 
+            medcount=tbl_medicalshop.objects.filter(medical_email=email,medical_password=password).count()
+
             if helpercount > 0:
                   helperdata=tbl_helper.objects.get(helper_email=email,helper_password=password)
                   request.session['hid']=helperdata.id
@@ -93,6 +95,12 @@ def login(request):
                   orgdata=tbl_organization.objects.get(org_email=email,org_password=password)
                   request.session['oid']=orgdata.id
                   return redirect('Organization:Homepage')
+            
+            elif medcount> 0:
+                  meddata=tbl_medicalshop.objects.get(medical_email=email,medical_password=password)
+                  request.session['mid']=meddata.id
+                  return redirect('MedicalShop:homepage')
+            
             else:
                   msg="Invalid credentials!!"
                   return render(request,'Guest/Login.html',{'msg':msg})

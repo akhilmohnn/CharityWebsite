@@ -63,7 +63,10 @@
                 <td style="padding: 8px;"><a href="#" style="text-decoration: none; color: #007bff;">Delete</a></td>
                 <td style="padding: 8px;">
                 {% if i.status == "3" %}
+
                 Paid
+                {% elif i.status == "0" %}
+                    Processing
             {% else %}
             Donated
         {% endif %}</td>

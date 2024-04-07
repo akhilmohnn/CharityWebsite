@@ -32,7 +32,9 @@ class tbl_comptype(models.Model):
     complaint_name=models.CharField(max_length=50)    
 
 
-
+class tbl_adminlogin(models.Model):
+    admin_email=models.CharField(max_length=50)
+    admin_password=models.CharField(max_length=50)
 
 
          

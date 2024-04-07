@@ -3,6 +3,8 @@ from MedicalShop import views
 
 app_name='MedicalShop'
 urlpatterns = [
+     
+     path('homepage/',views.homepage,name="homepage"),
      path('viewrequest/',views.viewrequest,name="viewrequest"),
      
      path('requestfull/<int:aid>',views.requestfull,name="requestfull"),
