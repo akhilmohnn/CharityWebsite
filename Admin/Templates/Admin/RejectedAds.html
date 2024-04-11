@@ -1,85 +1,39 @@
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViewAdvertisement</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5; /* light gray background */
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* subtle shadow */
-        }
-
-        h2 {
-            text-align: center;
-            color: #333; /* dark gray text */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd; /* light gray border */
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover; /* maintain aspect ratio */
-        }
-
-        a {
-            text-decoration: none;
-            color: #1fafa6; /* green link */
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Rejected Ads</title>
 </head>
-<body>
-    <div class="container">
-        <h2>Rejected Advertisements</h2>
-        <table>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0;">
+
+    <div style="max-width: 800px; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; color: #333;">Rejected Advertisements</h2>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
             <tr>
-                <th>SINo</th>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Content</th>
-                <th>Contact</th>
-                <th>Action</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">SINo</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Title</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Image</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Content</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Contact</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Action</th>
             </tr>
             {% for i in addata %}
             <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.ad_title}}</td>
-                <td><img src="{{ i.ad_image.url }}" alt="Image"></td>
-                <td>{{i.ad_content}}</td>
-                <td>{{i.ad_contact}}</td>
-                <td><a href="{% url 'webbasic:acceptads' i.id %}">Accept</a></td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{forloop.counter}}</td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.ad_title}}</td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;"><img src="{{ i.ad_image.url }}" alt="Image" style="width: 200px; height: 200px; object-fit: cover;"></td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.ad_content}}</td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.ad_contact}}</td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ddd;"><a href="{% url 'webbasic:acceptads' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Accept</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
+
 </body>
 </html>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'MedicalShop/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <form>
+        {% csrf_token %}
+        <table border="0" align="center">
+            <tr>
+                <td colspan="2">
+                    <img src="{{mdata.helper_photo.url}}" width="150" height="150">
+                </td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{mdata.medical_name}}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{mdata.medical_email}}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{mdata.medical_contact}}</td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>{{mdata.medical_place.place_name}}</td>
+            </tr>
+        
+        </table>
+    </form>
+</body>
+
+</html>
+
+{% endblock content %}

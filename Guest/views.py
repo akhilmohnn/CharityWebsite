@@ -86,6 +86,8 @@ def login(request):
 
             medcount=tbl_medicalshop.objects.filter(medical_email=email,medical_password=password).count()
 
+            admincount=tbl_adminlogin.objects.filter(admin_email=email,admin_password=password).count()
+
             if helpercount > 0:
                   helperdata=tbl_helper.objects.get(helper_email=email,helper_password=password)
                   request.session['hid']=helperdata.id
@@ -99,7 +101,12 @@ def login(request):
             elif medcount> 0:
                   meddata=tbl_medicalshop.objects.get(medical_email=email,medical_password=password)
                   request.session['mid']=meddata.id
-                  return redirect('MedicalShop:homepage')
+                  return redirect('MedicalShop:Homepage')
+            
+            elif admincount> 0:
+                  admindata=tbl_adminlogin.objects.get(admin_email=email,admin_password=password)
+                  request.session['aid']=admindata.id
+                  return redirect('webbasic:Homepage')
             
             else:
                   msg="Invalid credentials!!"

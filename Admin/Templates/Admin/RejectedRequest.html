@@ -1,3 +1,6 @@
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,36 +10,31 @@
 </head>
 <body>
     <center>
-        <h2>Organization requests</h2><br>
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table border="1" cellpadding="10">
-        <tr>
-            <td>SI No</td>
-            <td>Price</td>
-            <td>Content</td>
-            <td>Proof</td>
-            <td>Action</td>
-        </tr>
-        <tr>
-            {% for i in rqst1 %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.req_price}}</td>
-                <td>{{i.req_content}}</td>
-                <td><img src="{{ i.req_proof.url }}" alt="Image" width="200" height="200"></td>               
-                 <td>
-                    <a href="{% url 'webbasic:acceptrequest' i.id %}">Accept</a>
-                   
-                </td>
-            
-    
-                
-            </tr>
-            {% endfor %}
-        </tr>
-    </table>
-</form>
-</center>
+        <h2 style="color: #333;">Organization requests</h2><br>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table style="border-collapse: collapse; width: 100%; max-width: 800px; margin: 0 auto; border: 1px solid #ddd;">
+                <tr>
+                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; background-color: #f2f2f2;">SI No</th>
+                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; background-color: #f2f2f2;">Price</th>
+                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; background-color: #f2f2f2;">Content</th>
+                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; background-color: #f2f2f2;">Proof</th>
+                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; background-color: #f2f2f2;">Action</th>
+                </tr>
+                {% for i in rqst1 %}
+                <tr>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">{{forloop.counter}}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">{{i.req_price}}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">{{i.req_content}}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ddd;"><img src="{{ i.req_proof.url }}" alt="Image" width="200" height="200"></td>               
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">
+                        <a href="{% url 'webbasic:acceptrequest' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Accept</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
 </body>
 </html>
+{% endblock content %}

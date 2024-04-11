@@ -36,6 +36,7 @@ urlpatterns = [
         path('Scholarshiptype/',views.scholarshiptype,name="scholarshiptype"),
         path('ComplaintType/',views.comptype,name="ComplaintType"),
         path('complaints/',views.complaint,name="complaint"),
+        path('homepage/',views.homepage,name="Homepage"),
 
 
 

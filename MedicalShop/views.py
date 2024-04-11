@@ -6,14 +6,21 @@ from Helpers.models import *
 from Organization.models import *
 
 def viewrequest(request):
-    type=tbl_request.objects.get(id=5)
-    rqst1=tbl_helprequest.objects.filter(status=1,req_request=type,)
+    rqst1=tbl_helprequest.objects.filter(status=1)
     return render(request,"MedicalShop/ViewRequest.html",{'rqst1':rqst1}) 
 
 def requestfull(request,aid):
    
     rdata=tbl_helprequest.objects.get(id=aid)
     return render(request,"MedicalShop/RequestFull.html",{'rdata':rdata}) 
+
+# def viewrequest(request):
+#     rqst1=tbl_helprequest.objects.filter(status=1)
+#     return render(request,"Helpers/ViewRequest.html",{'rqst1':rqst1}) 
+
+# def requestfull(request, aid):
+#     rdata = tbl_helprequest.objects.get(id=aid)
+#     return render(request, "Helpers/RequestFull.html", {'rdata': rdata})
 
 def postproduct(request):
     request_data=tbl_request.objects.all()
@@ -70,4 +77,73 @@ def ajaxorg(request):
 
 def homepage(request):
     mdata=tbl_medicalshop.objects.get(id=request.session['mid'])
-    return render(request,"MedicalShop/Homepage.html",{'mdata':mdata})        
+    return render(request,"MedicalShop/Homepage.html",{'mdata':mdata})     
+
+def myprofile(request):
+    if 'mid' in request.session:
+        mdata=tbl_medicalshop.objects.get(id=request.session['mid'])
+        return render(request,"MedicalShop/MyProfile.html",{'mdata':mdata})
+    else :
+        return redirect("Guest:login")
+
+def editprofile(request):
+    mdata=tbl_medicalshop.objects.get(id=request.session['mid'])
+    if request.method=="POST":
+        mdata.medical_name=request.POST.get("txt_name")
+        mdata.medical_contact=request.POST.get("txt_con")
+        mdata.medical_email=request.POST.get("txt_email")
+        mdata.medical_address=request.POST.get("txt_address")
+        mdata.save()
+        return redirect("MedicalShop:MyProfile")
+    else:
+        return render(request,"MedicalShop/EditProfile.html",{'mdata':mdata}) 
+    
+def changep(request):
+    mdata = tbl_medicalshop.objects.get(id=request.session['mid'])
+    
+    if request.method == "POST":
+        pwd = mdata.medical_password
+        current_pwd = request.POST.get("txt_pass")
+        
+        if pwd == current_pwd:
+            pass1 = request.POST.get("txt_new")
+            pass2 = request.POST.get("txt_cpass")
+            
+            if pass1 == pass2:
+                mdata.medical_password = pass1
+                mdata.save()
+                return redirect("MedicalShop:ChangePassword")
+            else:
+                msg = "password does not match"
+                return render(request, "MedicalShop/ChangePassword.html", {'msg': msg})
+        else:
+            msg = "incorrect password"
+            return render(request, "MedicalShop/ChangePassword.html", {'msg': msg})
+    
+    # Add a default return statement here
+    return render(request, "MedicalShop/ChangePassword.html") 
+
+def paynow(request,did):
+    data=tbl_helprequest.objects.get(id=did)
+    if request.method=="POST":
+        data.status=3
+        data.save()
+        return redirect("MedicalShop:runpayment")
+    else:
+        return render(request,"MedicalShop/Payment.html") 
+
+def donatenow(request,did):
+    data=tbl_helprequest.objects.get(id=did)
+    data.status=2
+    data.save()
+        
+    return redirect("MedicalShop:viewrequest")
+    
+def runpayment(request):
+    return render(request,"MedicalShop/runpayment.html")
+
+def paysucessful(request):
+    return render(request,"MedicalShop/paysucessfull.html")
+
+
+

@@ -1,3 +1,6 @@
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +10,42 @@
 </head>
 <body>
     <center>
-        <h3>Rejected Organization</h3>
+        <h3 style="color: #333;">Rejected Organization</h3>
    
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table border="1" cellpadding="10">
+        <table style="border-collapse: collapse; width: 100%;">
             <tr>
-                <td>SI No</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Contact</td>
-                <td>Address</td>
-                <td>Logo</td>
-                <td>Proof</td>
-                <td>Type</td>
-                <td>District</td>
-                <td>Place</td>
-                <td>Action</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">SI No</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Name</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Email</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Contact</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Address</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Logo</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Proof</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Type</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">District</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Place</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Action</td>
             </tr>
+            {% for i in odata %}
             <tr>
-                {% for i in odata %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{i.org_name}}</td>
-                    <td>{{i.org_email}}</td>
-                    <td>{{i.org_contact}}</td>
-                    <td>{{i.org_address}}</td>
-                    <td>{{i.org_logo}}</td>
-                    <td>{{i.org_proof}}</td>
-                    <td>{{i.org_type.type_name}}</td>
-                    <td>{{i.org_place.district_id.district_name}}</td>
-                    <td>{{i.org_place.place_name}}</td>
-                    <td><a href="{% url 'webbasic:acceptorg' i.id %}">Accept</a></td>
-                
-        
-                    
-                </tr>
-                {% endfor %}
-
+                <td style="padding: 10px; border: 1px solid #ddd;">{{forloop.counter}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_email}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_contact}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_address}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_logo}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_proof}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_type.type_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_place.district_id.district_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.org_place.place_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><a href="{% url 'webbasic:acceptorg' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Accept</a></td>
             </tr>
+            {% endfor %}
         </table>
     </form>
 </center>
 </body>
 </html>
+{% endblock content %}

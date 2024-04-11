@@ -77,7 +77,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
         <nav class="navbar navbar-expand-lg bg-light shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Organization:Homepage' %}">
+                <a class="navbar-brand" href="{% url 'MedicalShop:Homepage' %}">
                     <img src="{% static 'Main/images/logo.png'%}" class="logo img-fluid" alt="Help the Helpless">
                     <span>
                         Help the Helpless
@@ -92,7 +92,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="{% url 'Organization:Homepage' %}">Home</a>
+                            <a class="nav-link click-scroll" href="{% url 'MedicalShop:Homepage' %}">Home</a>
                         </li>
 
                         
@@ -109,14 +109,17 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'Organization:MyProfile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'MedicalShop:MyProfile' %}">My Profile</a></li>
 
-                                <li><a class="dropdown-item" href="{% url 'Organization:EditProfile' %}">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Organization:ChangePassword' %}">Change Password</a></li>
+                                <li><a class="dropdown-item" href="{% url 'MedicalShop:EditProfile' %}">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'MedicalShop:ChangePassword' %}">Change Password</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'MedicalShop:viewrequest' %}">View Request</a>
+                        </li>
 
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
@@ -125,8 +128,8 @@ https://templatemo.com/tm-581-kind-heart-charity
                                 <li><a class="dropdown-item" href="{% url 'Organization:mybook' %}">My Bookings</a></li>
                                 <li><a class="dropdown-item" href="{% url 'Organization:viewposts' %}">View Posts</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li> -->
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Scholarships</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
@@ -137,8 +140,8 @@ https://templatemo.com/tm-581-kind-heart-charity
 
 
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li> -->
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
@@ -148,7 +151,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
 
                             </ul>
-                        </li>
+                        </li> -->
                     
                     </ul>
                 </div>

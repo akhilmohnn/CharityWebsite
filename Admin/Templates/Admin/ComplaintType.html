@@ -5,41 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0;">
+
     <center>
-        <h3>Complaint Types</h3>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Complaint Type</td>
-                <td><input type="text" name="comptype" id="comptype" value="{{comptyp_data.complaint_name}}"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Add" ></td>
-            </tr>
-        </table>
-        <br>
-        <table border="1">
-            <tr>
-                <td>SI No</td>
-                <td>Complaint Types</td>
-                <td>Action</td>
-            </tr>
-            {% for i in comptype %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.complaint_name}}</td>
-                <td>
-                    <a href="">Delete</a>
-                </td>
-                   
-                
-            </tr>
-            {% endfor %}
-        </table>
-    </form>
-</center>
+        <h3 style="color: #333;">Complaint Types</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table style="margin-bottom: 20px;">
+                <tr>
+                    <td>Complaint Type</td>
+                    <td><input type="text" name="comptype" id="comptype" value="{{comptyp_data.complaint_name}}" style="padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Add" style="padding: 5px 10px; background-color: #1fafa6; color: #fff; border: none; cursor: pointer;">
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="border-collapse: collapse; width: 50%; max-width: 400px;">
+                <tr>
+                    <td style="padding: 10px; text-align: center; background-color: #f2f2f2;">SI No</td>
+                    <td style="padding: 10px; text-align: center; background-color: #f2f2f2;">Complaint Types</td>
+                    <td style="padding: 10px; text-align: center; background-color: #f2f2f2;">Action</td>
+                </tr>
+                {% for i in comptype %}
+                <tr>
+                    <td style="padding: 10px; text-align: center;">{{forloop.counter}}</td>
+                    <td style="padding: 10px; text-align: center;">{{i.complaint_name}}</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="#" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
+
 </body>
 </html>

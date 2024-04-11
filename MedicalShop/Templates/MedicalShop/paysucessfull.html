@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Complete</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    position: relative;
+  }
+  .tick {
+    position: absolute;
+    top: -40px;
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+  }
+  .tick path {
+    stroke: #60c878;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawTick 1s ease-in-out forwards;
+  }
+  .card__msg {
+    color: #555;
+    font-size: 24px;
+    margin-top: 0;
+  }
+  .card__submsg {
+    color: #888;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+  }
+  .card__method {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .card__credit-card {
+    width: 50px;
+    vertical-align: middle;
+  }
+  .card__card-type {
+    color: #555;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .card__tags {
+    padding-top: 15px;
+  }
+  .card__tag {
+    background-color: #f8f6f6;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 3px 8px;
+    color: #888;
+    margin-right: 5px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawTick {
+    0% {
+      stroke-dashoffset: 200;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<audio id="paymentSound" src="Guest/static/Helper/audio/pay.mp3"></audio>
+<div class="card">
+  <svg class="tick" viewBox="0 0 52 52">
+    <circle class="tick__circle" cx="26" cy="26" r="25" fill="none"/>
+    <path class="tick__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+  </svg>
+  <h1 class="card__msg">Payment Complete</h1>
+  <h2 class="card__submsg">Thank you for your transfer</h2>
+  <div class="card__method">Payment method</div>
+  <div class="card__payment">
+    <img src="https://seeklogo.com/images/V/VISA-logo-F3440F512B-seeklogo.com.png" alt="Credit Card" class="card__credit-card">
+    <div class="card__card-details">
+      <p class="card__card-type">Credit / debit card</p>
+    </div>
+  </div>
+  <div class="card__tags">
+    <span class="card__tag">completed</span>
+  </div>
+</div>
+<script>
+  // Play sound when payment is complete
+  window.onload = function() {
+    var paymentSound = document.getElementById("paymentSound");
+    paymentSound.play();
+  };
+</script>
+</body>
+</html>

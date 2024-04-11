@@ -191,6 +191,9 @@ def complaint(request):
     comdata=tbl_comptype.objects.all()
     compdata=tbl_complaint.objects.all()
     return render(request,"Admin/ViewComplaint.html",{'orgdata':orgdata,'comdata':comdata,'compdata':compdata})
+
+def homepage(request):
+    return render(request,"Admin/Homepage.html")
    
 
 

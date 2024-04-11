@@ -1,78 +1,22 @@
-<!DOCTYPE html>   
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        form {
-            margin: 50px auto;
-            width: 300px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        form table {
-            width: 100%;
-        }
-        form td {
-            padding: 10px;
-        }
-        form select, form input[type="text"], form input[type="submit"] {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        form input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-        form input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        table {
-            margin: 20px auto;
-            width: 80%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        a {
-            text-decoration: none;
-            color: #333;
-        }
-        a:hover {
-            color: #555;
-        }
-    </style>
 </head>
-<body>
-    <form action="" method="post">
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    <form action="" method="post" style="margin: 50px auto; width: 300px; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
         {% csrf_token %}
-        <table>
+        <table style="width: 100%;">
             <tr>
-                <td>District</td>
-                <td>
-                    <select name="dropdown" id="">
+                <td style="padding: 10px;">District</td>
+                <td style="padding: 10px;">
+                    <select name="dropdown" id="" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
                         <option value="select"></option>
                         {% for i in district %}
                         <option value="{{i.id}}">{{i.district_name}}</option>
@@ -81,30 +25,33 @@
                 </td>
             </tr>
             <tr>
-                <td>Place</td>
-                <td><input type="text" name="place" id=""></td>
+                <td style="padding: 10px;">Place</td>
+                <td style="padding: 10px;"><input type="text" name="place" id="" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Add"></td>
+                <td colspan="2" style="padding: 10px;"><input type="submit" value="Add" style="width: calc(100% - 20px); padding: 8px; background-color: #4CAF50; color: white; border: none; cursor: pointer;"></td>
             </tr>
         </table>
     </form>
-    <table border="2">
+
+    <table border="2" style="margin: 20px auto; width: 80%; border-collapse: collapse;">
         <tr>
-            <th>SI NO</th>
-            <th>Place</th>
-            <th>Action</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">SI NO</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Place</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Action</th>
         </tr>
         {% for i in plc1 %}
         <tr>
-            <td>{{forloop.counter }}</td>
-            <td>{{i.place_name}}</td>
-            <td>
-                <a href="{% url 'webbasic:editplace' i.id %}">Edit</a>
-                <a href="{% url 'webbasic:deleteplace' i.id %}">Delete</a>
+            <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{forloop.counter }}</td>
+            <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.place_name}}</td>
+            <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">
+                <a href="{% url 'webbasic:editplace' i.id %}" style="text-decoration: none; color: #333;">Edit</a>
+                <a href="{% url 'webbasic:deleteplace' i.id %}" style="text-decoration: none; color: #333;">Delete</a>
             </td>
         </tr>
         {% endfor %}
     </table>
+
 </body>
 </html>
+{%endblock content%}

@@ -1,0 +1,89 @@
+{% extends 'MedicalShop/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            background-color: #fff; /* White background for the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            padding: 20px; /* Add padding */
+            max-width: 400px; /* Limit form width */
+            margin: 50px auto; /* Center the form horizontally */
+        }
+        table {
+            width: 100%; /* Full width */
+            border-collapse: collapse;
+        }
+        table tr td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Light gray bottom border */
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 20px); /* Calculate width minus padding */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px; /* Add spacing between inputs */
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            background-color: #5bc1ac; /* Blue button color */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #5bc1ac; /* Darker blue color on hover */
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table cellpadding="10" border="0"> <!-- Remove border attribute to remove table border -->
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="txt_name" value="{{mdata.medical_name}}"></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="text" name="txt_con" value="{{mdata.medical_contact}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="txt_email" value="{{mdata.medical_email}}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="txt_address" cols="30" rows="5">{{mdata.medical_address}}</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btn_submit" value="Update">
+                    <input type="reset" name="btn_cancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock content %}

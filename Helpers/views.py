@@ -213,7 +213,7 @@ def add_pay(request,did):
     if request.method=="POST":
         data.status=3
         data.save()
-        return redirect("Helpers:advertisement")
+        return redirect("Helpers:runpayment")
     else:
         return render(request,"Helpers/Payment.html") 
     
