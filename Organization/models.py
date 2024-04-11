@@ -31,6 +31,7 @@ class tbl_complaint(models.Model):
     complainttitle=models.CharField(max_length=50)
     complainttype=models.ForeignKey(tbl_comptype,on_delete=models.CASCADE) 
     content=models.CharField(max_length=50)
+    reply=models.CharField(max_length=50)
     complaintdate=models.DateField(auto_now_add=True) 
     organization=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)
 
@@ -40,5 +41,11 @@ class tbl_rating(models.Model):
     org_review=models.CharField(max_length=50)
     datetime=models.DateTimeField(auto_now_add=True)
     helper=models.ForeignKey(tbl_helper,on_delete=models.CASCADE,null=True)
+
+class tbl_feedback(models.Model):  
+    feedbacktitle=models.CharField(max_length=50)
+    content=models.CharField(max_length=50)
+    complaintdate=models.DateField(auto_now_add=True) 
+    organization=models.ForeignKey(tbl_organization,on_delete=models.SET_NULL,null=True)    
       
     

@@ -194,7 +194,24 @@ def complaint(request):
 
 def homepage(request):
     return render(request,"Admin/Homepage.html")
-   
+
+def complaintreply(request,cid):
+    data=tbl_complaint.objects.get(id=cid)
+    if request.method=="POST":
+        rdata=request.POST.get('txt_reply')
+        data.reply=rdata
+        data.status=1
+            #data.reply_date=date.today()
+        data.save()
+        return redirect("webbasic:Homepage")
+    else:
+        return render(request,"Admin/complaintreply.html")   
+    
+
+def feedback(request):
+    orgdata=tbl_organization.objects.get(id=request.session['oid'])
+    fdata=tbl_complaint.objects.all()
+    return render(request,"Admin/ViewFeedback.html",{'orgdata':orgdata,'fdata':fdata})    
 
 
 

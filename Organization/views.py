@@ -176,3 +176,19 @@ def ajaxstar(request):
     tbl_rating.objects.create(org_name=org_name,org_review=org_review,rating_data=rating_data,helper=hdata)
     stardata=tbl_rating.objects.filter(helper=hdata).order_by('-datetime')
     return render(request,"Organization/AjaxRating.html",{'data':stardata,'ar':parray})  
+
+
+def feedback(request):
+    orgdata=tbl_organization.objects.get(id=request.session['oid'])
+    fdata=tbl_feedback.objects.all()
+    if request.method=="POST":
+        tbl_feedback.objects.create(
+            
+            feedbacktitle = request.POST.get("txt_name"),
+            content = request.POST.get("txt_content"),
+            organization=orgdata,
+
+        )
+        return render(request,"Organization/Feedback.html",{'orgdata':orgdata,'fdata':fdata}) 
+    else:
+        return render(request,"Organization/Feedback.html",{'orgdata':orgdata,'fdata':fdata})

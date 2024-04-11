@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+            <tr>
+                <td>Description</td>
+                <td><textarea name="txt_reply" value="" required="" autocomplete="off"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">      
+                   <input type="submit" name="save" value="Save">
+                   <input type="reset" name="cancel" value="Cancel">
+                   </td>
+               </tr>
+               </table>
+               </form>
+</body>
+</html>

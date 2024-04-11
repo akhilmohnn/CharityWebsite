@@ -37,6 +37,8 @@ urlpatterns = [
         path('ComplaintType/',views.comptype,name="ComplaintType"),
         path('complaints/',views.complaint,name="complaint"),
         path('homepage/',views.homepage,name="Homepage"),
+        path('complaintreply/<int:cid>', views.complaintreply,name="complaintreply"),
+        path('feedback/',views.feedback,name="feedback")
 
 
 

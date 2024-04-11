@@ -11,30 +11,25 @@
 <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0;">
 
     <center>
-        <h1 style="color: #333;">View Complaint</h1>
+        <h1 style="color: #333;">View Feedback</h1>
    
         <table style="border-collapse: collapse; width: 90%; max-width: 800px; margin: 20px auto; border: 1px solid #ddd; background-color: #fff;">
             <thead>
                 <tr>
                     <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Sl.no</th>
                     <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Organization</th>
-                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Complaint Type</th>
-                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Complaint Title</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Feedback Title</th>
                     <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Content</th>
-                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Reply</th>
-                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd; background-color: #f2f2f2;">Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                {% for i in compdata %}
+                {% for i in fdata %}
                 <tr>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{forloop.counter}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.organization.org_name}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.complainttype.complaint_name}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.complainttitle}}</td>
+                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.feedbacktitle}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.content}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.reply}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;"><a href="{% url 'webbasic:complaintreply' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Give Reply</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -19,6 +19,7 @@ urlpatterns = [
      path('complaints/',views.complaint,name="complaint"),
      path('helperstar/<int:hid>',views.starrating,name="helperrating"),
      path('ajaxstar/',views.ajaxstar,name="ajaxstar"),
+     path('feedback/',views.feedback,name="feedback"),
 
 
 

@@ -15,19 +15,8 @@
         <div class="container mt-4">
             <table class="table table-bordered">
                 <tr>
-                    <td>Complaint Type</td>
-                    <td>
-                        <select class="form-control" name="select_com" id="">
-                            <option>--select--</option>
-                            {% for i in comdata %}
-                                <option value="{{ i.id }}">{{ i.complaint_name }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Complaint Title</td>
-                    <td><input type="text" class="form-control" name="txt_name" id="" placeholder="Mention the Helper's name also"></td>
+                    <td>Feedback Title</td>
+                    <td><input type="text" class="form-control" name="txt_name" id="" placeholder=""></td>
                 </tr>
                 <tr>
                     <td>Content</td>
@@ -46,21 +35,18 @@
         <thead>
             <tr>
                 <th>Sl.no</th>
-                <th>Complaint Type</th>
-                <th>Complaint Title</th>
+                
+                <th>Feedback Title</th>
                 <th>Content</th>
-                <th>Reply</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            {% for i in compdata %}
+            {% for i in fdata %}
                 <tr>
                     <td>{{forloop.counter}}</td>
-                    <td>{{i.complainttype.complaint_name}}</td>
-                    <td>{{i.complainttitle}}</td>
+                    <td>{{i.feedbacktitle}}</td>
                     <td>{{i.content}}</td>
-                    <td>{{i.reply}}</td>
 
 
                     <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
