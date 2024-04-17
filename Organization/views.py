@@ -124,6 +124,10 @@ def viewscholarshipapply(request):
     else:
         return render(request,"Organization/ViewScholarshipApply.html",{'datas':data})
     
+def deletescholar(request,did):
+    tbl_scholarshipapply.objects.get(id=did).delete()
+    return redirect("Organization:ViewScholarShipApply")    
+    
 def scholarshipstatus(request):
     if 'oid' in request.session:
         data=tbl_organization.objects.get(id=request.session["oid"])

@@ -1,0 +1,47 @@
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h3 style="color: #333;">Helpers list</h3>
+   
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">SI No</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Name</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Email</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Contact</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Address</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Photo</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Type</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">District</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Place</td>
+            </tr>
+            {% for i in hdata %}
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{forloop.counter}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_email}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_contact}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_address}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"> <img src="{{ i.helper_photo.url }}" alt="Image" width="200" height="200"></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_type.type_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_place.district_id.district_name}}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{i.helper_place.place_name}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</center>
+</body>
+</html>
+{% endblock content %}

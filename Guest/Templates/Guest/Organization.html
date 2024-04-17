@@ -6,85 +6,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Organization Registration</title>
 </head>
 <body>
     <center>
         <h3>Organization Registration</h3>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table border="1">
-            <tr>
-                <td>Name</td>
-                <td><input type="text" name="org_name" id="org_name"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="text" name="org_email" id="org_email"></td>
-            </tr>
-            <tr>
-                <td>Contact</td>
-                <td><input type="text" name="org_contact" id="org_contact"></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td><input type="text" name="org_address" id="org_address"></td>
-            </tr>
-            <tr>
-                <td>Logo</td>
-                <td><input type="file" name="org_logo" id="org_logo"></td>
-            </tr>
-            <tr>
-                <td>Proof</td>
-                <td><input type="file" name="org_proof" id="org_proof"></td>
-            </tr>
-            <tr>
-                <td>District</td>
-                <td>
-                    <select name="dropdown" id="sel_dis">
-                        <option value="select"></option>
-                        {% for i in district %}
-                        <option value="{{i.id}}">{{i.district_name}}</option>
-                        {% endfor %}
-    
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Place</td>
-                <td>
-                    <select name="sel_place" id="sel_place">
-                        <option value="">...Select...</option>
-    
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>
-                    <select name="org_type" id="org_type">
-                        <option value="select"></option>
-                        {% for i in type %}
-                        <option value="{{i.id}}">{{i.type_name}}</option>
-                        {% endfor %}
-    
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="org_password" id="org_password"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Register">
-                    <input type="reset" value="Cancel"></td>
-            </tr>
-        </table>
-    </form>
-</center>
+        <form id="helper-registration-form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table border="1">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="org_name" id="org_name" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="org_email" id="org_email" required></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="tel" name="org_contact" id="org_contact" pattern="[0-9]{10}" required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="org_address" id="org_address" required></td>
+                </tr>
+                <tr>
+                    <td>Logo</td>
+                    <td><input type="file" name="org_logo" id="org_logo" required></td>
+                </tr>
+                <tr>
+                    <td>Proof</td>
+                    <td><input type="file" name="org_proof" id="org_proof" required></td>
+                </tr>
+                <tr>
+                    <td>District</td>
+                    <td>
+                        <select name="dropdown" id="sel_dis" required>
+                            <option value="select"></option>
+                            {% for i in district %}
+                            <option value="{{i.id}}">{{i.district_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Place</td>
+                    <td>
+                        <select name="sel_place" id="sel_place" required>
+                            <option value="">...Select...</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>
+                        <select name="org_type" id="org_type" required>
+                            <option value="select"></option>
+                            {% for i in type %}
+                            <option value="{{i.id}}">{{i.type_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="org_password" id="org_password" required></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="password" name="confirm_password" id="confirm_password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Register">
+                        <input type="reset" value="Cancel">
+                    </td>
+                </tr>
+            </table>
+        </form><br><br>
+        <h5>(You can login only after Admin's approval)</h5>
+    </center>
 </body>
 </html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $("#sel_dis").change(function () {
@@ -98,6 +102,42 @@
             },
         });
     });
-    </script>
+
+    // Validation Script
+    $('#helper-registration-form').submit(function (e) {
+        var password = $('#org_password').val();
+        var confirmPassword = $('#confirm_password').val();
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            e.preventDefault();
+        }
+
+        var email = $('#org_email').val();
+        var contact = $('#org_contact').val();
+        var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // Password pattern: At least one uppercase, one lowercase, one number, and minimum eight characters
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email pattern
+        var contactPattern = /^\d{10}$/; // Mobile number pattern (10 digits only)
+        
+        if (!emailPattern.test(email)) {
+            alert("Invalid email format.");
+            e.preventDefault();
+        }
+
+        if (!contactPattern.test(contact)) {
+            alert("Invalid contact number format. Please enter 10 digits.");
+            e.preventDefault();
+        }
+
+        if (!passwordPattern.test(password)) {
+            alert("Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long.");
+            e.preventDefault();
+        }
+    });
+</script>
+
+
+
 
     {% endblock content %}
+
+    

@@ -178,6 +178,20 @@ def scholarshiptype(request):
     else:
         return render(request,"Admin/Scholarshiptype.html",{'scholarshiptype':disdata})
     
+def deletescholar(request,did):
+    tbl_scholarshiptype.objects.get(id=did).delete()
+    return redirect("webbasic:scholarshiptype") 
+
+def editscholar(request,eid):
+    scholar=tbl_scholarshiptype.objects.get(id=eid)
+    if request.method=="POST":
+        scholar.scholarship_type=request.POST.get("scholar")
+        scholar.save()
+        return redirect("webbasic:scholarshiptype")
+    else:
+        return render(request,"Admin/Scholarshiptype.html",{'disdata':scholar})
+
+    
 def comptype(request):
     comptype_data=tbl_comptype.objects.all()
     if request.method=="POST":
@@ -203,16 +217,23 @@ def complaintreply(request,cid):
         data.status=1
             #data.reply_date=date.today()
         data.save()
-        return redirect("webbasic:Homepage")
+        return redirect("webbasic:complaint")
     else:
         return render(request,"Admin/complaintreply.html")   
     
 
 def feedback(request):
     orgdata=tbl_organization.objects.get(id=request.session['oid'])
-    fdata=tbl_complaint.objects.all()
-    return render(request,"Admin/ViewFeedback.html",{'orgdata':orgdata,'fdata':fdata})    
+    fdata=tbl_feedback.objects.all()
+    return render(request,"Admin/ViewFeedback.html",{'orgdata':orgdata,'fdata':fdata})   
 
+def helper(request):
+    hdata=tbl_helper.objects.all()
+    return render(request,"Admin/ViewHelpers.html",{'hdata':hdata}) 
+
+def medical(request):
+    mdata=tbl_medicalshop.objects.all()
+    return render(request,"Admin/ViewMedicalShop.html",{'mdata':mdata}) 
 
 
 

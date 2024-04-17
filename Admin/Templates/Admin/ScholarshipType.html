@@ -40,7 +40,7 @@
                 <td style="padding: 10px; text-align: left; border: 1px solid #000;">{{forloop.counter}}</td>
                 <td style="padding: 10px; text-align: left; border: 1px solid #000;">{{i.scholarship_type}}</td>
                 <td style="padding: 10px; text-align: left; border: 1px solid #000;">
-                    <a href="#" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Delete</a>
+                    <a href="{% url 'webbasic:deletescholar' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Delete</a>
                     <a href="#" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Edit</a>
                 </td>
             </tr>

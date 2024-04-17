@@ -36,14 +36,14 @@
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_email}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_contact}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_address}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_logo}}</td>
-                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_proof}}</td>
+                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;"><img src="{{ i.org_logo.url }}" alt="Image" width="200" height="200"></td>
+                    <td style="padding: 10px; text-align: left; border: 1px solid #ddd;"><img src="{{ i.org_proof.url }}" alt="Image" width="200" height="200"></td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_type.type_name}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_place.district_id.district_name}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">{{i.org_place.place_name}}</td>
                     <td style="padding: 10px; text-align: left; border: 1px solid #ddd;">
                         <a href="{% url 'webbasic:acceptorg' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold; margin-right: 5px;">Accept</a>
-                        <a href="{% url 'webbasic:rejectads' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Reject</a>
+                        <a href="{% url 'webbasic:rejectorg' i.id %}" style="text-decoration: none; color: #1fafa6; font-weight: bold;">Reject</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -38,7 +38,11 @@ urlpatterns = [
         path('complaints/',views.complaint,name="complaint"),
         path('homepage/',views.homepage,name="Homepage"),
         path('complaintreply/<int:cid>', views.complaintreply,name="complaintreply"),
-        path('feedback/',views.feedback,name="feedback")
+        path('feedback/',views.feedback,name="feedback"),
+        path('helper/',views.helper,name="helper"),
+        path('medical/',views.medical,name="medical"),
+        path('deletescholar/<int:did>',views.deletescholar,name="deletescholar"),
+        path('editscholar/<int:eid>',views.editscholar,name="editscholar"),
 
 
 

@@ -3,23 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group textarea {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .btn-group {
+            text-align: center;
+        }
+        .btn-group input {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-group input:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
-            <tr>
-                <td>Description</td>
-                <td><textarea name="txt_reply" value="" required="" autocomplete="off"></textarea></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">      
-                   <input type="submit" name="save" value="Save">
-                   <input type="reset" name="cancel" value="Cancel">
-                   </td>
-               </tr>
-               </table>
-               </form>
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="txt_reply">Description</label>
+                <textarea id="txt_reply" name="txt_reply" required autocomplete="off" rows="4"></textarea>
+            </div>
+            <div class="btn-group">
+                <input type="submit" name="save" value="Save">
+                <input type="reset" name="cancel" value="Cancel">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

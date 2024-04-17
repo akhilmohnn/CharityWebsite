@@ -6,75 +6,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medical Shop Registration</title>
 </head>
 <body>
     <center>
         <h3>Medical Shop Registration</h3>
-    <form action="" method="post" enctype="multipart/form-data" id="registration-form">
-    {% csrf_token %}
-    <table border="1">
-        <tr>
-            <td>Name</td>
-            <td><input type="text" name="medical_name" id="medical_name"></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" name="medical_email" id="medical_email"></td>
-        </tr>
-        <tr>
-            <td>Contact</td>
-            <td><input type="tel" name="medical_contact" id="medical_contact"></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input type="text" name="medical_address" id="medical_address"></td>
-        </tr>
-        <tr>
-            <td>Photo</td>
-            <td><input type="file" name="medical_photo" id="medical_photo"></td>
-        </tr>
-        <tr>
-            <td>Proof</td>
-            <td><input type="file" name="medical_proof" id="medical_proof"></td>
-        </tr>
-        <tr>
-            <td>District</td>
-            <td>
-                <select name="dropdown" id="sel_dis">
-                    <option value="select"></option>
-                    {% for i in district %}
-                    <option value="{{i.id}}">{{i.district_name}}</option>
-                    {% endfor %}
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Place</td>
-            <td>
-                <select name="sel_place" id="sel_place">
-                    <option value="">...Select...</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="medical_password" id="medical_password"></td>
-        </tr>
-        <tr>
-            <td>Confirm Password</td>
-            <td><input type="password" name="medical_confirm_password" id="medical_confirm_password"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Register">
-            </td>
-        </tr>
-    </table>
-    </form>
-</center>
+        <form action="" method="post" enctype="multipart/form-data" id="registration-form">
+            {% csrf_token %}
+            <table border="1">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="medical_name" id="medical_name"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="medical_email" id="medical_email"></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="tel" name="medical_contact" id="medical_contact"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="medical_address" id="medical_address"></td>
+                </tr>
+                <tr>
+                    <td>Photo</td>
+                    <td><input type="file" name="medical_photo" id="medical_photo"></td>
+                </tr>
+                <tr>
+                    <td>Proof</td>
+                    <td><input type="file" name="medical_proof" id="medical_proof"></td>
+                </tr>
+                <tr>
+                    <td>District</td>
+                    <td>
+                        <select name="dropdown" id="sel_dis">
+                            <option value="select"></option>
+                            {% for i in district %}
+                            <option value="{{i.id}}">{{i.district_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Place</td>
+                    <td>
+                        <select name="sel_place" id="sel_place">
+                            <option value="">...Select...</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="medical_password" id="medical_password"></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="password" name="medical_confirm_password" id="medical_confirm_password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Register">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
 </body>
 </html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $("#sel_dis").change(function () {
@@ -118,8 +119,7 @@
             alert("Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long.");
             e.preventDefault();
         }
-
-        
     });
 </script>
+
 {% endblock content %}
