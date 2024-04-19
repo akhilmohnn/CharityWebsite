@@ -60,7 +60,7 @@
                 <td style="padding: 8px;">{{forloop.counter}}</td>
                 <td style="padding: 8px;">{{i.req_price}}</td>
                 <td style="padding: 8px;">{{i.req_content}}</td>
-                <td style="padding: 8px;"><a href="#" style="text-decoration: none; color: #007bff;">Delete</a></td>
+                <td style="padding: 8px;"><a href="{% url 'Organization:deleterequest' i.id %}" style="text-decoration: none; color: #007bff;">Delete</a></td>
                 <td style="padding: 8px;">
                 {% if i.status == "3" %}
 

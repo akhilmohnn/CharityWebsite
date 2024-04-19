@@ -66,6 +66,10 @@ def reqproduct(request):
     else:
         return render(request,'Organization/Requests.html',{'rqst':request_data,'rqst1': rqst1,'rqst1': rqst1})
     
+def deleterequest(request,did):
+    tbl_helprequest.objects.get(id=did).delete()
+    return redirect("Organization:reqproduct")     
+    
 
 def viewposts(request):
     rqst1=tbl_post.objects.all()
@@ -126,7 +130,7 @@ def viewscholarshipapply(request):
     
 def deletescholar(request,did):
     tbl_scholarshipapply.objects.get(id=did).delete()
-    return redirect("Organization:ViewScholarShipApply")    
+    return redirect("Organization:viewscholarshipapply")    
     
 def scholarshipstatus(request):
     if 'oid' in request.session:

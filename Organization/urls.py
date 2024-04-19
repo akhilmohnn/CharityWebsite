@@ -21,6 +21,7 @@ urlpatterns = [
      path('ajaxstar/',views.ajaxstar,name="ajaxstar"),
      path('feedback/',views.feedback,name="feedback"),
      path('deletescholar/<int:did>',views.deletescholar,name="deletescholar"),
+     path('deleterequest/<int:did>',views.deleterequest,name="deleterequest"),
      
 
 

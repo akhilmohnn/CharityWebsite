@@ -138,6 +138,8 @@ def donatenow(request,did):
     data.save()
         
     return redirect("MedicalShop:viewrequest")
+
+
     
 def runpayment(request):
     return render(request,"MedicalShop/runpayment.html")

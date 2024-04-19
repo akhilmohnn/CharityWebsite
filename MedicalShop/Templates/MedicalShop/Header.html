@@ -118,6 +118,19 @@ https://templatemo.com/tm-581-kind-heart-charity
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="{% url 'MedicalShop:viewrequest' %}">View Request</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'MedicalShop:search' %}">Search Organization</a></li>
+
+                                <li><a class="dropdown-item" href="mailto: helpthelpless@outlook.com">Contact</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Guest:index' %}">Log out</a></li>
+                                
+
+
+                            </ul>
+                        </li>
 
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
